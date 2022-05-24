@@ -19,6 +19,12 @@ export default function Detail() {
   console.log(location.search);
   return (
     <div className='container detailPage'>
+      <p>location.pathname: {location.pathname}</p>
+      <p>location.search: {location.search}</p>
+      <p>mediaType: {mediaType}</p>
+      <p>id: {id}</p>
+      <p>language: {language}</p>
+      <p>query: {query}</p>
       <Fetch 
         uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
         renderSuccess={information}
