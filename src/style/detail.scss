@@ -1,0 +1,412 @@
+@import './mixin';
+
+.detailPage{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    .featuredArea{
+        position:relative;
+        height: 510px;
+        padding-bottom: 3rem;
+        .dimArea{
+            position:absolute;
+            top:0;
+            left:0;
+            right:0;
+            height:275px;
+            background:rgba(0,0,0,0.65);
+            z-index: 1;
+        }
+        .background{
+            height: 275px;
+            width: 100%;
+            object-fit: cover;
+            object-position: top;
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+        }
+        .contentArea{
+            position:relative;
+            top: -3rem;
+            padding: 0 5rem;
+            bottom: 0;
+            z-index: 10;
+            display: flex;
+            align-items: flex-start;
+            width: 75%;
+            margin: 0 auto;
+            box-sizing: border-box;
+            .poster{
+                width: auto;
+                height: 210px;
+                box-shadow: 2px 2px 3px rgb(0 0 0 / 50%);
+                border-radius: 6px;
+            }
+            .textArea{
+                margin-left: 2rem;
+                padding: 0;
+                color: #0b0b0b;
+                word-break: keep-all;
+                .etcInfo{
+                    height: 2.75rem;
+                    margin: 0 0 0.5rem 0;
+                    padding: 0;
+                    list-style: none;
+                    color: #fff;
+                    font-size: 1rem;
+                    display: flex;
+                    align-items: center;
+                    li{
+                        margin-right: 1rem;
+                        &.rating{
+                            display: flex;
+                            align-items: center;
+                            .MuiRating-root{
+                                // color:#;
+                                .MuiRating-iconEmpty{
+                                    color:rgba(255, 255, 255, 0.5);
+                                }
+                            }
+                            span.rateLabel{
+                                margin-left: 0.25rem;
+                                font-weight: 700;
+                                background: #faaf00;
+                                padding:0.125rem 0.5rem;
+                                border-radius: 6px;
+                                color:rgba(0,0,0,0.75);
+                            }
+                        }
+                    }
+                }
+                .titleArea{
+                    margin: 0 0 1rem 0;
+                    box-sizing: border-box;
+                    /* text-shadow: 2px 2px 3px rgb(0 0 0 / 50%); */
+                    h1{
+                        font-weight: 700;
+                        font-size: 1.75rem;
+                        letter-spacing: -0.3px;
+                        padding: 0;
+                        margin: 0 0 0.25rem 0;
+                    }
+                    p{
+                        color: rgb(40, 40, 40);
+                        margin: 0;
+                        font-size: 1rem;
+                    }
+                    
+                }
+                .basicInfo{
+                    margin: 0 0 1rem 0;
+                    padding: 0;
+                    list-style: none;
+                    //color: rgba(255, 255, 255, 0.5);
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    font-size: 1rem;
+                    li{
+                        &.genres{
+                            margin: 0;
+                            padding:0;
+                            list-style: none;
+                            display: flex;
+                            align-items: center;
+                            li{
+                                margin-right: 1rem;
+                                .MuiChip-root{
+                                    background: rgba(255,255,255,0.75);
+                                    padding:0 0.25rem;
+                                    font-size: 0.75rem;
+                                }
+                            }
+                        }
+                        span{
+                            &::after{
+                                display:inline-block;
+                                padding: 0 0.25rem;
+                                content: "\002f";
+                            }
+                            &:last-child{
+                                &::after{
+                                    padding:0;
+                                    content:"";
+                                }
+                            }
+                        }
+                        &::after{
+                            display:inline-block;
+                            padding: 0 0.5rem;
+                            content: "\007c";
+                        }
+                        &:last-child{
+                            &::after{
+                                padding:0;
+                                content:"";
+                            }
+                        }
+                        &.pointed{
+                            color: rgba(255,255,255,0.75);
+                        }
+                    }
+                }
+                .providers{
+                    padding: 0.25rem 0;
+                    .MuiChip-root{
+                        margin-right: 1rem;
+                    }
+                }
+            }
+
+                
+        }
+    }
+    .infoArea{
+        padding: 1rem 2rem;
+        .MuiTabs-root{
+            .MuiButtonBase-root{
+                font-weight: 900;
+                font-size: 1rem;
+            }
+        }
+        .tabArea{
+            padding:2rem 1rem;
+            color: rgba(0,0,0,0.75);
+            .items{
+                margin-bottom: 1.5rem;
+            }
+            h2{
+                margin-top: 0;
+            }
+            p{
+                font-size: 1rem;
+                text-align:justify;
+                line-height: 1.25rem;
+            }
+        }
+        
+    }
+}
+
+@include laptop{
+    .featuredArea{
+        height: 300px;
+        .dimArea{
+            height:300px;
+        }
+    }
+}
+
+@include desktopToLaptop{
+    .featuredArea{
+        .contentArea{
+            .textArea{
+                padding: 0.75rem 0;
+            }
+        }
+    }
+}
+
+@include tablet {
+    .detailArea{
+        .featuredArea{
+            height: 350px;
+            padding-bottom: 2rem;
+            .dimArea{
+                height:235px;
+            }
+            .background{
+                height:235px;
+            }
+            .contentArea{
+                top: -2rem;
+                .poster{
+                    height: 180px;
+                }
+                .textArea{
+                    .etcInfo{
+                        height: 1.75rem;
+                        font-size: 0.75rem;
+                        li.rating{
+                            .MuiRating-root{
+                                font-size: 1.25rem;
+                            }
+                        }
+                    }
+                    .titleArea{
+                        h1{
+                            font-size: 1.5rem;
+                        }
+                        p{
+                            font-size: 0.875rem;
+                        }
+                    }
+                    .basicInfo{
+                        font-size: 0.75rem;
+                    }
+                    .providers{
+                        .MuiChip-root{
+                            font-size: 0.75rem;
+                            height: 1.875rem;
+                            .MuiChip-avatar{
+                                width: 1.25rem;
+                                height: 1.25rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include tabletToMobile{
+    .detailArea{
+        .featuredArea{
+            height: 320px;
+            padding-bottom: 2rem;
+            .dimArea{
+                height:200px;
+            }
+            .background{
+                height:200px;
+            }
+            .contentArea{
+                top: -2rem;
+                .poster{
+                    height: 180px;
+                }
+                .textArea{
+                    .etcInfo{
+                        height: 1.75rem;
+                        font-size: 0.75rem;
+                        li.rating{
+                            .MuiRating-root{
+                                font-size: 1.25rem;
+                            }
+                        }
+                    }
+                    .titleArea{
+                        h1{
+                            font-size: 1.5rem;
+                        }
+                        p{
+                            font-size: 0.875rem;
+                        }
+                    }
+                    .basicInfo{
+                        font-size: 0.75rem;
+                        margin-bottom: 0.75rem;
+                    }
+                    .providers{
+                        .MuiChip-root{
+                            font-size: 0.75rem;
+                            height: 1.875rem;
+                            .MuiChip-avatar{
+                                width: 1.25rem;
+                                height: 1.25rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include mobile {
+    .header{
+        padding: 1rem;
+        button{
+            .MuiSvgIcon-root{
+                font-size: 1.5rem;
+            }
+        }
+    }
+    .detailArea{
+        .featuredArea{
+            min-height: 275px;
+            height: auto;
+            padding-bottom: 0;
+            margin-bottom: 0;
+            .dimArea{
+                min-height: 275px;
+            }
+            .background{
+                min-height: 275px;
+            }
+            .contentArea{
+                position:absolute;
+                height: auto;
+                top: 3.75rem;
+                left: 0;
+                right: 0;
+                padding: 0 1rem;
+                .poster{
+                    height: 175px;
+                }
+                .textArea{
+                    margin-left: 1rem;
+                    .etcInfo{
+                        height: 1.75rem;
+                        font-size: 0.75rem;
+                        margin-bottom: 0;
+                        li.rating{
+                            .MuiRating-root{
+                                font-size: 1rem;
+                            }
+                        }
+                    }
+                    .titleArea{
+                        margin-top: 0.5rem;
+                        margin-bottom: 0.75rem;
+                        h1{
+                            font-size: 1.125rem;
+                            color:rgba(255, 255, 255, 0.85);
+                        }
+                        p{
+                            font-size: 0.75rem;
+                            color:rgba(255, 255, 255, 0.85);
+                        }
+                    }
+                    .basicInfo{
+                        font-size: 0.75rem;
+                        margin-bottom: 0.75rem;
+                        color:rgba(255, 255, 255, 0.5);
+                    }
+                    .providers{
+                        display:none;
+                        padding: 0;
+                        .MuiChip-root{
+                            color:rgba(255, 255, 255, 0.85);
+                            background-color: rgba(255, 255, 255, 0.1);
+                            font-size: 0.75rem;
+                            height: 1.5rem;
+                            .MuiChip-avatar{
+                                width: 1rem;
+                                height: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .infoArea{
+            padding: 1rem;
+            .MuiTabs-root{
+                .MuiButtonBase-root{
+                    font-size: 0.875rem;
+                }
+            }
+            .tabArea{
+                h2{
+                    font-size: 1rem;
+                }
+                p{
+                    font-size: 0.75rem;
+                    line-height: 1rem;
+                }
+            }
+        }
+    }
+}

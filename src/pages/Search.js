@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
 import { SearchData, ResultList } from '../components/search'
 import Fetch from '../lib/Fetch'
@@ -10,6 +11,13 @@ export default function Search() {
   const [mediaType, setMediaType] = useState('movie');
   const [currentPage, setCurrentPage] = useState(1);
 
+  // 쿼리스트링
+  const [searchParams, setSearchParams] = useSearchParams();
+  //const language = searchParams.get('language');
+  //const query = searchParams.get('query');
+
+  const location = useLocation();
+  console.log(location.search);
   return (
     <div className='container searchPage'>
       <SearchData 

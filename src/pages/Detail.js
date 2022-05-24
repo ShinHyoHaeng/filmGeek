@@ -3,6 +3,7 @@ import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
 import { Collections, Crew, Featured, Information, Providers } from '../components/detail';
 import Fetch from '../lib/Fetch'
+import '../style/detail.scss'
 
 export default function Detail() {
   // 파라미터
@@ -19,12 +20,6 @@ export default function Detail() {
   console.log(location.search);
   return (
     <div className='container detailPage'>
-      <p>location.pathname: {location.pathname}</p>
-      <p>location.search: {location.search}</p>
-      <p>mediaType: {mediaType}</p>
-      <p>id: {id}</p>
-      <p>language: {language}</p>
-      <p>query: {query}</p>
       <Fetch 
         uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
         renderSuccess={information}
@@ -33,17 +28,24 @@ export default function Detail() {
         uri={`${API_URL}${mediaType}/${id}/watch/providers?api_key=${API_KEY}&language=${language}`} 
         renderSuccess={providers}
       />
+      <p>location.pathname: {location.pathname}</p>
+      <p>location.search: {location.search}</p>
+      <p>mediaType: {mediaType}</p>
+      <p>id: {id}</p>
+      <p>language: {language}</p>
+      <p>query: {query}</p>
     </div> 
   )
   
+  function information({data}){
+    return <Featured data={data} language={language} mediaType={mediaType} />
+  }
+
   function providers({data}){
     return (
       <Providers data={data} />
     )
   }
   
-  function information({data}){
-    return <Featured data={data}/>
-  }
 
 }

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Box, Fab, Zoom, Badge, IconButton } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import { ReactComponent as NotionIcon } from '../assets/images/notion.svg';
 import '../style/common.scss'
 
@@ -44,12 +45,28 @@ ScrollTop.propTypes = {
 };
   
 export default function Header(props) {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
+  function handleClick() {
+    const destination = location.search;
+    return navigate({
+      pathname: '/home',
+      search: destination
+    });
+  }
+
   return (
     <>
       <CssBaseline />
-      <AppBar>
-        <Toolbar>
-            <Link to='/'>
+      <AppBar className={location.pathname !== '/home'? 'noColor':''}>
+        <Toolbar id="back-to-top-anchor">
+          {location.pathname !== '/home' && 
+            <IconButton size="large" className="prevPage" onClick={handleClick}>
+              <ArrowBackRoundedIcon />
+            </IconButton>
+          }
+            <Link to="/home">
               <h1>tmdb2notion</h1>
             </Link>
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
@@ -59,7 +76,6 @@ export default function Header(props) {
             </IconButton>
         </Toolbar>
       </AppBar>
-      <Toolbar id="back-to-top-anchor" />
       <ScrollTop {...props}>
         <Fab color="primary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />

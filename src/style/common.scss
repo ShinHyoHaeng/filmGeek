@@ -4,7 +4,7 @@ body{
     font-weight: 400;
 }
 
-#root{
+.wrapper{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -13,8 +13,13 @@ body{
 header.MuiPaper-root{
     background: #3700b3;
     color: #fff;
+    &.noColor{
+        background: transparent;
+        //box-shadow: none;
+    }
     .MuiToolbar-root{
         justify-content: space-between;
+        align-items: center;
     }
     a{
         color: #fff;
@@ -29,12 +34,24 @@ header.MuiPaper-root{
             filter:invert(100%);
             -webkit-filter:invert(100%);
         }
+        &.prevPage{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            svg{
+                width: 1.5rem;
+                height: 1.5rem;
+                filter: invert(0%);
+                -webkit-filter: invert(0%);
+            }   
+        }
     }
 }
 
 .container{
     width: 75%;
-    margin: 0 auto;
+    margin: 64px auto 0 auto;
     padding: 2rem 5rem;
     .compArea{
         padding: 1rem 0;
