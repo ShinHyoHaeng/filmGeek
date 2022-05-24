@@ -8,9 +8,9 @@ const App = () => {
     <>
       <Header />
       <Routes>
-        <Route path="/ShinHyoHaeng/react-tmdb2notion" element={<Search />} />
-        <Route path="/" element={<Search />} />
-        <Route path="/detail/:mediaType/:id" element={<Detail />} />
+        {/* <Route path="/ShinHyoHaeng/react-tmdb2notion" element={<Search />} /> */}
+        <Route path="/react-tmdb2notion" element={<Search />} />
+        <Route path="/react-tmdb2notion/detail/:mediaType/:id" element={<Detail />} />
       </Routes>
       <Footer />
     </>
