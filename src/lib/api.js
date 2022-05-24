@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { API_KEY, API_URL } from './constants'
+import { API_KEY, API_URL } from '../data/constants'
 
 
 //https://foamless.tistory.com/617
@@ -18,6 +18,16 @@ export default {
     .then(res => res.data)
     .catch(error => console.log(error)),
 
+    getLatestMovies: ({type: string, lnaguage: string}) => axios.get(`${baseUrl}/3/${type}/popular`, {
+        params: {
+          api_key: process.env.API_KEY,
+          type,
+          language
+        }
+      })
+      .then(res => res.data)
+      .catch(error => console.log(error)),
+      
     getDetail: ({type: string, id: string}) => axios.get(`${API_URL}/3/${type}/${id}`, {
         params: {
             type,

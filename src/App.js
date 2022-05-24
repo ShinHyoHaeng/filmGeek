@@ -1,13 +1,19 @@
-import { Route, Routes } from 'react-router-dom';
+import React, { Route, Routes } from 'react-router-dom';
+import { Header, Footer } from './layout';
 import { Search, Detail } from './pages'
 
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Search />} />
-      <Route path="/detail" element={<Detail />} />
-    </Routes>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/ShinHyoHaeng/react-tmdb2notion" element={<Search />} />
+        <Route path="/" element={<Search />} />
+        <Route path="/detail/:mediaType/:id" element={<Detail />} />
+      </Routes>
+      <Footer />
+    </>
   );
 };
 

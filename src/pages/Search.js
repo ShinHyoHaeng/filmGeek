@@ -1,17 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { SearchData, Result } from '../components/search'
+import React, { useState } from 'react';
+import { API_URL, API_KEY } from '../data/constants'
+import { SearchData, ResultList } from '../components/search'
+import Fetch from '../lib/Fetch'
+import '../style/search.scss'
 
-//https://react.vlpt.us/integrate-api/01-basic.html
-//https://velog.io/@velopert/react-router-v6-tutorial
+export default function Search() {    
+  const [query, setQuery] = useState('');
+  const [language, setLanguage] = useState('ko-KR');
+  const [mediaType, setMediaType] = useState('movie');
+  const [currentPage, setCurrentPage] = useState(1);
 
-const search = () => {
   return (
-    <div>
-        <SearchData />
-        <Result />
+    <div className='container searchPage'>
+      <SearchData 
+        setQuery={setQuery} 
+        setLanguage={setLanguage}
+        setCurrentPage={setCurrentPage}
+      />
+      {query ?
+        // 검색어가 있을 때
+        <Fetch 
+          uri={`${API_URL}search/multi?api_key=${API_KEY}&language=${language}&query=${query}&page=${currentPage}&include_adult=false`} 
+          renderSuccess={searchResult}
+        /> 
+        :
+        // 검색어가 없을 때
+        <Fetch 
+          uri={`${API_URL}${mediaType}/popular?api_key=${API_KEY}&language=${language}&page=${currentPage}`} 
+          renderSuccess={searchResult}
+        /> 
+      }
     </div>
   )
-}
 
-export default search
+  function searchResult({data}){
+    return (
+      <ResultList 
+        data={data} 
+        mediaType={mediaType} 
+        query={query} 
+        language={language}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    )
+  }
+}

@@ -1,0 +1,46 @@
+body{
+    margin:0;
+    font-family: 'Roboto', 'Spoqa Han Sans Neo', 'sans-serif' !important;
+    font-weight: 400;
+}
+
+#root{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header.MuiPaper-root{
+    background: #3700b3;
+    color: #fff;
+    .MuiToolbar-root{
+        justify-content: space-between;
+    }
+    a{
+        color: #fff;
+        text-decoration: none;
+        h1{
+            font-size: 1.25rem;
+        }
+    }
+    button{
+        color: #fff;
+        svg{
+            filter:invert(100%);
+            -webkit-filter:invert(100%);
+        }
+    }
+}
+
+.container{
+    width: 75%;
+    margin: 0 auto;
+    padding: 2rem 5rem;
+    .compArea{
+        padding: 1rem 0;
+    }
+}
+
+footer.MuiBox-root{
+    text-align: center;
+}
