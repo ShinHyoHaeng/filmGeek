@@ -8,12 +8,14 @@ import Item from '../common/Item'
 const ResultList = ({ data, mediaType, language, query, currentPage, setCurrentPage }) => {
   const totalCnt = data.total_results;
   const results = data.results;
+  const page = data.page;
+  const totalPages = data.total_pages;
   console.log("results>>",results, "totalCnt>>>",totalCnt, "currentPage>>>", currentPage);
 
   return (
     <div className="compArea resultList">
       <div className="listInfo">
-        <p className="total">검색 결과: 총 {totalCnt}건({data.page}/{data.total_pages} 페이지)</p>
+        <p className="total">검색 결과: 총 {totalCnt.toLocaleString({language})}건({page.toLocaleString({language})}/{totalPages.toLocaleString({language})}) 페이지)</p>
         <ul className="pageNavigate">
           <li className="prevButton">
             <IconButton aria-label="prev page" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
