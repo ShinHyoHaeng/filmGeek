@@ -15,7 +15,7 @@ const ResultList = ({ data, mediaType, language, query, currentPage, setCurrentP
   return (
     <div className="compArea resultList">
       <div className="listInfo">
-        <p className="total">검색 결과: 총 {totalCnt.toLocaleString({language})}건({page.toLocaleString({language})}/{totalPages.toLocaleString({language})}) 페이지)</p>
+        <p className="total">검색 결과: 총 {totalCnt.toLocaleString({language})}건({page.toLocaleString({language})}/{totalPages.toLocaleString({language})} 페이지)</p>
         <ul className="pageNavigate">
           <li className="prevButton">
             <IconButton aria-label="prev page" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
