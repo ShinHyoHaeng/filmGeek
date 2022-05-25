@@ -88,7 +88,7 @@ export default function Header(props) {
                 <ArrowBackRoundedIcon />
               </IconButton>
             }
-            {location.pathname.includes('/home') && 
+            {!location.pathname.includes('/detail') && 
               <Link to={`/home`}>
                 <h1>tmdb2notion</h1>
               </Link>
