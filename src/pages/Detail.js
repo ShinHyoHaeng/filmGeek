@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
-import { Similar, Crew, Featured, Information } from '../components/detail';
+import { Similar, Crews, Featured, Information } from '../components/detail';
 import { Tabs, Tab, Box } from '@mui/material';
 import Fetch from '../lib/Fetch'
 import '../style/detail.scss'
@@ -112,7 +112,7 @@ export default function Detail() {
   function crew({data}){
     return (
       <>
-        <Crew data={data} language={language} id={id} />
+        <Crews data={data} language={language} id={id} />
       </>
     )
   }

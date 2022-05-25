@@ -1,5 +1,5 @@
 export { default as Similar } from './Similar'
-export { default as Crew } from './Crew'
+export { default as Crews } from './Crews'
 export { default as Featured } from './Featured'
 export { default as Information } from './Information'
 export { default as Providers } from './Providers'
