@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter basename='/ShinHyoHaeng/react-tmdb2notion/'>
+  <BrowserRouter basename='/react-tmdb2notion/'>
     <React.StrictMode>
       <App />
     </React.StrictMode>
