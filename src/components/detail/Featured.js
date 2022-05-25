@@ -19,9 +19,9 @@ const Featured = ({data, language, mediaType, id}) => {
                 <GetYear mediaType={mediaType} release={data.release_date} firstAir={data.first_air_date} lastAir={data.last_air_date} />
               </h1>
               {data.original_title?
-                (data.original_title === data.title ?null: <p>data.original_title</p>)
+                (data.original_title === data.title ?null: <p>{data.original_title}</p>)
               :
-                (data.original_name === data.name ?null: <p>data.original_name</p>)
+                (data.original_name === data.name ?null: <p>{data.original_name}</p>)
               }
             </div>
             <ul className="basicInfo">
