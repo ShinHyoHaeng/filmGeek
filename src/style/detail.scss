@@ -169,6 +169,12 @@
             .MuiButtonBase-root{
                 font-weight: 900;
                 font-size: 1rem;
+                &.Mui-selected{
+                    color: #3700b3;
+                }
+            }
+            .css-1aquho2-MuiTabs-indicator{
+                background-color: #3700b3;
             }
         }
         .tabArea{
@@ -457,12 +463,6 @@
             .MuiTabs-root{
                 .MuiButtonBase-root{
                     font-size: 0.875rem;
-                    &.Mui-selected{
-                        color: #3700b3;
-                    }
-                }
-                .css-1aquho2-MuiTabs-indicator{
-                    background-color: #3700b3;
                 }
             }
             .tabArea{
