@@ -1,3 +1,4 @@
+@import './mixin';
 .searchPage{
     .MuiGrid-item{
         max-width: 20%;
@@ -79,10 +80,159 @@
                 list-style: none;
                 display: flex;
                 align-items: center;
-                li{
+            }
+        }
+    }
+}
 
+@include laptop{
+    .searchPage{
+        &.container{
+            width: 90%;
+            //padding: 2rem;
+        }
+        .resultList{
+            .MuiSkeleton-root{
+                height:270px;
+            }
+            .MuiGrid-item{
+                max-width: 20%;
+                flex-basis: 20%;
+                a{
+                    height:270px;
                 }
             }
         }
     }
+}
+
+@include laptopToTablet {
+    .searchPage{
+        &.container{
+            width: 100%;
+            //padding: 2rem;
+        }
+        .resultList{
+            .MuiSkeleton-root{
+                height:250px;
+            }
+            .MuiGrid-item{
+                max-width: 20%;
+                flex-basis: 20%;
+                a{
+                    height:250px;
+                }
+            }
+        }
+    }
+}
+
+@include tablet{
+    .searchPage{
+        &.container{
+            width: 100%;
+            padding: 2rem;
+        }
+        .resultList{
+            .MuiGrid-item{
+                max-width: 25%;
+                flex-basis: 25%;
+                .MuiChip-root{
+                    width:25px;
+                    height:25px;
+                    .MuiSvgIcon-root{
+                        font-size:1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include tabletToMobile {
+    .searchPage{
+        &.container{
+            width: 100%;
+        }
+        .resultList{
+            .MuiSkeleton-root{
+                height:200px;
+            }
+            .MuiGrid-item{
+                max-width: 25%;
+                flex-basis: 25%;
+                a{
+                    height:200px;
+                    .MuiChip-root{
+                        width:25px;
+                        height:25px;
+                        .MuiSvgIcon-root{
+                            font-size:1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include mobile {
+    .searchPage{
+        padding: 1rem 2rem;
+        &.container{
+            width: 100%;
+            .compArea{
+                padding: 0.5rem 0;
+            }
+        }
+        .resultList{
+            .MuiSkeleton-root{
+                height:160px;
+            }
+            .listInfo{
+                .total{
+                    margin: 0;
+                    font-size: 0.75rem;
+                }
+                .pageNavigate{
+                    li{
+                        margin-left: 0.5rem;
+                    }
+                    .MuiIconButton-root{
+                        padding: 0.25rem;
+                    }
+                }
+            }
+            .MuiGrid-item{
+                max-width: 50%;
+                flex-basis: 50%;
+                a{
+                    height:245px;
+                    .MuiChip-root{
+                        width:25px;
+                        height:25px;
+                        .MuiSvgIcon-root{
+                            font-size:1rem;
+                        }
+                    }
+                    .noImg{
+                        padding:0.2rem;
+                        font-size:0.75rem;
+                        letter-spacing: -0.2px;
+                        word-wrap: break-word;
+                        .wrapper{
+                            .MuiSvgIcon-root{
+                                width:1rem;
+                                height:1rem;
+                            }
+                            span{
+                                margin-top:0.25rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }

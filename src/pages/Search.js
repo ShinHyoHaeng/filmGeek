@@ -6,18 +6,16 @@ import Fetch from '../lib/Fetch'
 import '../style/search.scss'
 
 export default function Search() {    
-  const [query, setQuery] = useState('');
-  const [language, setLanguage] = useState('ko-KR');
-  const [mediaType, setMediaType] = useState('movie');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get('query'));
+  const [language, setLanguage] = useState(searchParams.get('language'));
+  const mediaType = 'movie';
   const [currentPage, setCurrentPage] = useState(1);
 
-  // 쿼리스트링
-  const [searchParams, setSearchParams] = useSearchParams();
-  //const language = searchParams.get('language');
-  //const query = searchParams.get('query');
-
+  console.log(searchParams);
   const location = useLocation();
   console.log(location.search);
+
   return (
     <div className='container searchPage'>
       <SearchData 

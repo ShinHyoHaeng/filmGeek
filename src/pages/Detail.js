@@ -1,11 +1,49 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { useParams, useLocation, useSearchParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
-import { Collections, Crew, Featured, Information, Providers } from '../components/detail';
+import { Similar, Crew, Featured, Information } from '../components/detail';
+import { Tabs, Tab, Box } from '@mui/material';
 import Fetch from '../lib/Fetch'
 import '../style/detail.scss'
 
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && children}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
 export default function Detail() {
+
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  
   // 파라미터
   const params = useParams();
   const mediaType = params.mediaType;
@@ -17,35 +55,73 @@ export default function Detail() {
   const query = searchParams.get('query');
 
   const location = useLocation();
-  console.log(location.search);
   return (
     <div className='container detailPage'>
       <Fetch 
         uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
-        renderSuccess={information}
+        renderSuccess={featured}
       />
-      <Fetch 
-        uri={`${API_URL}${mediaType}/${id}/watch/providers?api_key=${API_KEY}&language=${language}`} 
-        renderSuccess={providers}
-      />
-      <p>location.pathname: {location.pathname}</p>
-      <p>location.search: {location.search}</p>
-      <p>mediaType: {mediaType}</p>
-      <p>id: {id}</p>
-      <p>language: {language}</p>
-      <p>query: {query}</p>
+      <div className='infoArea'>
+        <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs value={value} onChange={handleChange} textColor="primary"  indicatorColor="primary">
+                <Tab label={language === 'ko-KR'? '기본 정보':'Details'} {...a11yProps(0)} />
+                <Tab label={language === 'ko-KR'? '출연/제작':'Casts'} {...a11yProps(1)} />
+                <Tab label={language === 'ko-KR'? '비슷한 작품':'similer to'} {...a11yProps(2)} />
+              </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+            <Fetch 
+              uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
+              renderSuccess={information}
+            />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <Fetch 
+                uri={`${API_URL}${mediaType}/${id}/credits?api_key=${API_KEY}&language=${language}`} 
+                renderSuccess={crew}
+              />
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <Fetch 
+                  uri={`${API_URL}${mediaType}/${id}/similar?api_key=${API_KEY}&language=${language}&page=1`} 
+                  renderSuccess={similar}
+                />
+            </TabPanel>
+        </Box>
+      </div>
     </div> 
   )
-  
-  function information({data}){
-    return <Featured data={data} language={language} mediaType={mediaType} />
-  }
 
-  function providers({data}){
+  function featured({data}){
     return (
-      <Providers data={data} />
+      <>
+        <Featured data={data} language={language} mediaType={mediaType} id={id} />
+      </>
     )
   }
-  
 
+  function information({data}){
+    return (
+      <>
+        <Information data={data} language={language} mediaType={mediaType} id={id} />
+      </>
+    )
+  }
+
+  function crew({data}){
+    return (
+      <>
+        <Crew data={data} language={language} id={id} />
+      </>
+    )
+  }
+
+  function similar({data}){
+    return (
+      <>
+        <Similar data={data} language={language} id={id} />
+      </>
+    )
+  }
 }

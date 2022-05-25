@@ -8,6 +8,7 @@ const App = () => {
     <div className="wrapper">
       <Header />
       <Routes>
+        <Route index element={<Search />} />
         <Route path="/home" element={<Search />} />
         <Route path="/detail/:mediaType/:id" element={<Detail />} />
       </Routes>

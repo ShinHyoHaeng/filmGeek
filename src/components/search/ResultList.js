@@ -30,7 +30,7 @@ const ResultList = ({ data, mediaType, language, query, currentPage, setCurrentP
       <Grid container spacing={2}>
         {results.map((result, index) => (
             <Item 
-              key={index}
+              key={result.id}
               id={result.id}
               image={result.poster_path ? `${IMAGE_BASE_URL}w500${result.poster_path}`:null}
               profile={result.profile_path ? `${IMAGE_BASE_URL}w500${result.profile_path}`:null}
