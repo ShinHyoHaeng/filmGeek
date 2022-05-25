@@ -7,7 +7,7 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
 import PersonIcon from '@mui/icons-material/Person';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
-const Item = ({id, image, profile, title, mediaType, query, language}) => {
+const Item = ({id, image, profile, title, mediaType, query, language, page}) => {
     const [isHovering, setIsHovering] = useState(false);
     const [isActive, setIsActive] = useState(false);
 
@@ -32,7 +32,7 @@ const Item = ({id, image, profile, title, mediaType, query, language}) => {
             onTouchStart={() => setIsActive(true)} 
             onTouchEnd={() => setIsActive(false)}
           >
-            <Link to={`/detail/${mediaType}/${id}?language=${language}&query=${query}`}>
+            <Link to={`/detail/${mediaType}/${id}?language=${language}&query=${query}&page=${page}`}>
                 {!image ?
                     (profile ?
                         <>

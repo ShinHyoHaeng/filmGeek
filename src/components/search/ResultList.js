@@ -40,6 +40,7 @@ const ResultList = ({ data, mediaType, language, query, currentPage, setCurrentP
               title={result.title? result.title:result.name}
               language={language}
               query={query}
+              page={page}
             />
         ))}
       </Grid>
