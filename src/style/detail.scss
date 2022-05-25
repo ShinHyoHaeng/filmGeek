@@ -160,6 +160,22 @@
                 }
             }
         }
+        .addNotion{
+            position:absolute;
+            right: 0;
+            top: 1rem;
+            svg{
+                filter:invert(100%);
+                -webkit-filter:invert(100%);
+                width: 1.75rem;
+                height: 1.75rem;
+                &.MuiSvgIcon-root{
+                    color: #fff;
+                    filter:invert(0%);
+                    -webkit-filter:invert(0%);
+                }
+            }
+        }
     }
     .infoArea{
         padding: 1rem 2rem;
@@ -300,6 +316,9 @@
                     }
                 }
             }
+            .addNotion{
+                right: 2em;
+            }
         }
         .infoArea{
             width: 100%;
@@ -357,6 +376,9 @@
                         }
                     }
                 }
+            }
+            .addNotion{
+                right: 2em;
             }
         }
         .infoArea{
@@ -455,6 +477,12 @@
                         }
                     }
                 }
+            }
+            .addNotion{
+                position:absolute;
+                top: auto;
+                right: 2rem;
+                bottom: -1rem;
             }
         }
         .infoArea{

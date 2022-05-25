@@ -63,6 +63,27 @@ header.MuiPaper-root{
             }   
         }
     }
+    .menu{
+        width: 9rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .MuiToggleButtonGroup-root {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            button{
+                padding: 0.25rem 0.5rem;
+                &.MuiToggleButton-root{
+                    color: rgba(255, 255, 255, 0.5);
+                    border-color: rgba(255, 255, 255, 0.5);
+                }
+                &.Mui-selected{
+                    color: #fff !important;
+                    border-color: rgba(255, 255, 255, 0.75);
+                    background-color: rgba(255, 255, 255, 0.25);
+                }
+            }
+        }
+    }
 }
 
 #back-to-top-anchor{
@@ -87,5 +108,16 @@ footer.MuiBox-root{
     .MuiBox-root.css-48vsyy{
         right:1rem;
         bottom: 2.75rem;
+    }
+    
+    header.MuiPaper-root{
+        .menu{
+            width: auto;
+            .MuiToggleButtonGroup-root {
+                button{
+                    font-size: 0.75rem;     
+                }
+            }
+        }
     }
 }

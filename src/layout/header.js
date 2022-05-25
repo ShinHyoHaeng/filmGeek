@@ -1,9 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Box, Fab, Zoom, Badge, IconButton, Slide } from '@mui/material';
+import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Box, Fab, Zoom, Badge, IconButton, Slide, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import { ReactComponent as NotionIcon } from '../assets/images/notion.svg';
 import '../style/common.scss'
 
@@ -63,18 +64,19 @@ HideOnScroll.propTypes = {
 export default function Header(props) {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
-  console.log(location.pathname)
-  console.log(location.search)
   function handleClick() {
     const destination = location.search;
-    
     return navigate({
       pathname: '/home',
       search: destination
     });
   }
 
+  const handleLanguage = (event, newLanguage) => {
+    if (newLanguage.length) {
+      props.setLanguage(newLanguage);
+    }
+  };
   return (
     <>
       <CssBaseline />
@@ -86,14 +88,28 @@ export default function Header(props) {
                 <ArrowBackRoundedIcon />
               </IconButton>
             }
-              <Link to={`/home?language=ko-KR&query=`}>
+            {location.pathname.includes('/home') && 
+              <Link to={`/home`}>
                 <h1>tmdb2notion</h1>
               </Link>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => alert("준비중입니다")}>
-                <Badge badgeContent={4} color="error">
-                  <NotionIcon />
-                </Badge>
-              </IconButton>
+            }
+              <div className='menu'>
+                <ToggleButtonGroup
+                  value={props.language}
+                  size="large"
+                  onChange={handleLanguage}
+                  aria-label="language"
+                  exclusive
+                >
+                  <ToggleButton value="ko-KR" aria-label="Korean">KR</ToggleButton>
+                  <ToggleButton value="en-US" aria-label="English">EN</ToggleButton>
+                </ToggleButtonGroup>
+                <IconButton size="large" aria-label="you choose 4 contents for notion" color="inherit" onClick={() => alert("준비중입니다")}>
+                  <Badge badgeContent={4} color="error">
+                    <NotionIcon />
+                  </Badge>
+                </IconButton>
+              </div>
           </Toolbar>
         </AppBar>
       </HideOnScroll>

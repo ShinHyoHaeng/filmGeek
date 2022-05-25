@@ -5,34 +5,25 @@ import { SearchData, ResultList } from '../components/search'
 import Fetch from '../lib/Fetch'
 import '../style/search.scss'
 
-export default function Search() {    
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [query, setQuery] = useState(searchParams.get('query'));
-  const [language, setLanguage] = useState(searchParams.get('language'));
+export default function Search({language, query, setQuery, page, setPage}) {    
   const mediaType = 'movie';
-  const [currentPage, setCurrentPage] = useState(1);
-
-  console.log(searchParams);
-  const location = useLocation();
-  console.log(location.search);
 
   return (
     <div className='container searchPage'>
       <SearchData 
         setQuery={setQuery} 
-        setLanguage={setLanguage}
-        setCurrentPage={setCurrentPage}
+        setCurrentPage={setPage}
       />
       {query ?
         // 검색어가 있을 때
         <Fetch 
-          uri={`${API_URL}search/multi?api_key=${API_KEY}&language=${language}&query=${query}&page=${currentPage}&include_adult=false`} 
+          uri={`${API_URL}search/multi?api_key=${API_KEY}&language=${language}&query=${query}&page=${page}&include_adult=false`} 
           renderSuccess={searchResult}
         /> 
         :
         // 검색어가 없을 때
         <Fetch 
-          uri={`${API_URL}${mediaType}/popular?api_key=${API_KEY}&language=${language}&page=${currentPage}`} 
+          uri={`${API_URL}${mediaType}/popular?api_key=${API_KEY}&language=${language}&page=${page}`} 
           renderSuccess={searchResult}
         /> 
       }
@@ -46,8 +37,8 @@ export default function Search() {
         mediaType={mediaType} 
         query={query} 
         language={language}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
+        page={page}
+        setPage={setPage}
       />
     )
   }

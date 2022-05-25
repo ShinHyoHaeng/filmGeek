@@ -7,24 +7,25 @@ const SearchData = (props) => {
 
   const handleInputChange = (event) => {   
     let value = event.target.value;
-    console.log(value);
-    checkLanguage(value);
+    setSearchValue(value);
+    props.setQuery(value);
   }
 
   // 입력 언어에 따라 검색 언어 변경
-  const checkLanguage = (value) => {
-    props.setCurrentPage(1);
-    if(/[a-z]/i.test(value)){
-      console.log("english");
-      props.setLanguage('en-US');
-    }else if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(value)){
-      console.log("한글");
-      props.setLanguage('ko-KR');
-    }
-      setSearchValue(value);
-      props.setQuery(value);
+  // const checkLanguage = (value) => {
+  //   props.setCurrentPage(1);
+  //   if(/[a-z]/i.test(value)){
+  //     console.log("english");
+  //     props.setLanguage('en-US');
+  //   }else if(/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(value)){
+  //     console.log("한글");
+  //     props.setLanguage('ko-KR');
+  //   }
+  //     setSearchValue(value);
+  //     props.setQuery(value);
     
-  }
+  // }
+
   return (
     <div className="compArea">
       <TextField

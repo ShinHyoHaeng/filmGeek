@@ -1,16 +1,21 @@
-import React, { Route, Routes } from 'react-router-dom';
+import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom';
 import { Header, Footer } from './layout'
 import { Search, Detail } from './pages'
 
 
 const App = () => {
+  const [language, setLanguage] = useState('ko-KR');
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
+
   return (
     <div className="wrapper">
-      <Header />
+      <Header setLanguage={setLanguage} language={language} query={query} page={page} />
       <Routes>
-        <Route  path="/" element={<Search />} />
-        <Route path="/home" element={<Search />} />
-        <Route path="/detail/:mediaType/:id" element={<Detail />} />
+        <Route path="/" element={<Search language={language} setQuery={setQuery} setPage={setPage} query={query} page={page}/>} />
+        <Route path="/home" element={<Search language={language} setQuery={setQuery} setPage={setPage} query={query} page={page} />} />
+        <Route path="/detail/:mediaType/:id" element={<Detail language={language} query={query}  page={page} />} />
       </Routes>
       <Footer />
     </div>

@@ -5,12 +5,11 @@ import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRound
 import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
 import Item from '../common/Item'
 
-const ResultList = ({ data, mediaType, language, query, currentPage, setCurrentPage }) => {
+const ResultList = ({ data, mediaType, language, query, page, setPage }) => {
   const totalCnt = data.total_results;
   const results = data.results;
-  const page = data.page;
+  const currentPage = data.page;
   const totalPages = data.total_pages;
-  console.log("results>>",results, "totalCnt>>>",totalCnt, "currentPage>>>", currentPage);
 
   return (
     <div className="compArea resultList">
@@ -18,12 +17,12 @@ const ResultList = ({ data, mediaType, language, query, currentPage, setCurrentP
         <p className="total">검색 결과: 총 {totalCnt.toLocaleString({language})}건({page.toLocaleString({language})}/{totalPages.toLocaleString({language})} 페이지)</p>
         <ul className="pageNavigate">
           <li className="prevButton">
-            <IconButton aria-label="prev page" onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+            <IconButton aria-label="prev page" onClick={() => setPage(page - 1)} disabled={page === 1}>
               <ArrowBackIosNewRoundedIcon />
             </IconButton>
           </li>
           <li className="nextButton">
-            <IconButton aria-label="next page" onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === data.total_pages}>
+            <IconButton aria-label="next page" onClick={() => setPage(page + 1)} disabled={page === data.total_pages}>
               <ArrowForwardIosRoundedIcon />
             </IconButton>
           </li>

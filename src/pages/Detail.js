@@ -36,7 +36,7 @@ function a11yProps(index) {
   };
 }
 
-export default function Detail() {
+export default function Detail({language, query, page}) {
 
   const [value, setValue] = React.useState(0);
 
@@ -49,11 +49,6 @@ export default function Detail() {
   const mediaType = params.mediaType;
   const id = params.id;
   
-  // 쿼리스트링
-  const [searchParams, setSearchParams] = useSearchParams();
-  const language = searchParams.get('language');
-  const query = searchParams.get('query');
-
   const location = useLocation();
   return (
     <div className='container detailPage'>
@@ -67,7 +62,7 @@ export default function Detail() {
               <Tabs value={value} onChange={handleChange} textColor="primary"  indicatorColor="primary">
                 <Tab label={language === 'ko-KR'? '기본 정보':'Details'} {...a11yProps(0)} />
                 <Tab label={language === 'ko-KR'? '출연/제작':'Casts'} {...a11yProps(1)} />
-                <Tab label={language === 'ko-KR'? '비슷한 작품':'similer to'} {...a11yProps(2)} />
+                <Tab label={language === 'ko-KR'? '비슷한 작품':'similar to'} {...a11yProps(2)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>

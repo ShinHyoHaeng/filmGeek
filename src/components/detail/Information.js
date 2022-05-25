@@ -2,7 +2,6 @@ import React from 'react'
 import { GetCountry, GetRuntime, GetGenre, GetCompanies } from '.';
 
 const Information = ({data, language, mediaType}) => {
-    console.log(data);
 
     return (
         <div className='tabArea'>
@@ -34,10 +33,13 @@ const Information = ({data, language, mediaType}) => {
                     </dl>
                 </div>
             </div>
-            <div className='items'>
-                <h2>{language === 'ko-KR'? '줄거리':'Overview'}</h2>
-                <p>{data.overview}</p>
-            </div>
+            {data.overview ?
+                <div className='items'>
+                    <h2>{language === 'ko-KR'? '줄거리':'Overview'}</h2>
+                    <p>{data.overview}</p>
+                </div>
+                :null
+            }
         </div>
     )
 }
