@@ -89,10 +89,10 @@ export default function Header(props) {
               <Link to={`/home?language=ko-KR&query=`}>
                 <h1>tmdb2notion</h1>
               </Link>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <NotionIcon />
-              </Badge>
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit" onClick={() => alert("준비중입니다")}>
+                <Badge badgeContent={4} color="error">
+                  <NotionIcon />
+                </Badge>
               </IconButton>
           </Toolbar>
         </AppBar>
