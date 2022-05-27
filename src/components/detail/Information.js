@@ -1,5 +1,7 @@
 import React from 'react'
-import { GetCountry, GetRuntime, GetGenre, GetCompanies } from '.';
+import { GetCountry, GetRuntime, GetGenre, GetCompanies, Providers } from '.';
+import { API_URL, API_KEY } from '../../data/constants';
+import Fetch from '../../lib/Fetch';
 
 const Information = ({data, language, mediaType}) => {
 
@@ -31,6 +33,15 @@ const Information = ({data, language, mediaType}) => {
                         <dt>{language === 'ko-KR'? '제작사':'Production Companies'}</dt>
                         <dd><GetCompanies prodCompanies={data.production_companies}/></dd>
                     </dl>
+                    <dl className='showMobile'>
+                        <dt>{language === 'ko-KR'? 'OTT 서비스':'Providers'}</dt>
+                        <dd>
+                            <Fetch 
+                                uri={`${API_URL}${mediaType}/${data.id}/watch/providers?api_key=${API_KEY}&language=${language}`} 
+                                renderSuccess={providers}
+                            />
+                        </dd>
+                    </dl>
                 </div>
             </div>
             {data.overview ?
@@ -42,6 +53,12 @@ const Information = ({data, language, mediaType}) => {
             }
         </div>
     )
+    function providers({data}){
+        return (
+          <Providers data={data} language={language} />
+        )
+      }
 }
+
 
 export default Information

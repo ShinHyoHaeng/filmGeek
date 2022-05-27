@@ -1,7 +1,7 @@
 import React from 'react'
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../data/constants';
-import { Fab, Checkbox } from '@mui/material';
 import Fetch from '../../lib/Fetch';
+import { Fab, Checkbox } from '@mui/material';
 import { ReactComponent as NotionIcon } from '../../assets/images/notion.svg';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { GetCountry, GetYear, GetRuntime, GetGenre, Providers, RatingStars } from '.';

@@ -31,6 +31,11 @@ header.MuiPaper-root{
         background: transparent;
         //border-bottom: 1px solid rgba(0,0,0,0.1);
         box-shadow: none;
+        .menu{
+            .MuiToggleButtonGroup-root {
+                border: none;
+            }
+        }
         
     }
     .MuiToolbar-root{
@@ -104,7 +109,27 @@ footer.MuiBox-root{
     text-align: center;
 }
 
+.showMobile{
+    display: none !important;
+}
+
+@include tablet {
+    .showMobile{
+        display: flex !important;
+    }
+}
+
+@include tabletToMobile{
+    .showMobile{
+        display: flex !important;
+    }
+}
+
 @include mobile {
+    .showMobile{
+        display: flex !important;
+    }
+
     .MuiBox-root.css-48vsyy{
         right:1rem;
         bottom: 2.75rem;
