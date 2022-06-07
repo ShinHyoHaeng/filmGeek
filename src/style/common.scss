@@ -27,16 +27,40 @@ body{
 header.MuiPaper-root{
     background: #3700b3;
     color: #fff;
-    &.noColor{
-        background: transparent;
-        //border-bottom: 1px solid rgba(0,0,0,0.1);
-        box-shadow: none;
+    &.scrollHeader{
+        a{
+            color:rgba(0,0,0,0.75);
+        }
+        button{
+            color: rgba(0,0,0,0.75);
+            svg{
+                filter: invert(0%);
+                -webkit-filter: invert(0%);
+            }
+            &.prevPage{
+                svg{
+                    filter: invert(0%);
+                    -webkit-filter: invert(0%);
+                }   
+            }
+        } 
         .menu{
             .MuiToggleButtonGroup-root {
-                border: none;
+                border: 1px solid rgba(0, 0, 0, 0.12);
+                button{
+                    padding: 0.25rem 0.5rem;
+                    &.MuiToggleButton-root{
+                        color: rgba(0, 0, 0, 0.5);
+                        border-color: rgba(0, 0, 0, 0.12);
+                    }
+                    &.Mui-selected{
+                        color: #3700b3 !important;
+                        border-color: rgba(0, 0, 0, 0.12);
+                        background-color: rgba(55, 0, 179, 0.08);
+                    }
+                }
             }
         }
-        
     }
     .MuiToolbar-root{
         justify-content: space-between;

@@ -235,8 +235,65 @@
                 text-align:justify;
                 line-height: 1.5rem;
             }
+            .titleArea{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+                h2{
+                    margin-bottom: 0;
+                }
+            }
+            .crewArea{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-content: stretch;
+                margin: 0 0 2rem 0;
+                padding: 0;
+                list-style: none;
+                .MuiAvatar-root{
+                    img{
+                        filter:grayscale(100%);
+                        -webkit-filter:grayscale(100%);
+                    }
+                    &.hoverActive{
+                        img{
+                            filter:grayscale(0%);
+                            -webkit-filter:grayscale(0%);
+                        }
+                    }
+                }
+                li{
+                    flex-basis: 49%;
+                    display: flex;
+                    align-items: center;
+                    border: 1px solid rgba(0, 0, 0, 0.125);
+                    border-radius: 6px;
+                    margin-bottom: 1.25rem;
+                    a{
+                        color: inherit;
+                        text-decoration: none;
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        padding: 0.75rem;
+                        .textArea{
+                            padding-left: 1rem;
+                            h3{
+                                margin: 0;
+                            }
+                            p{
+                                margin: 0;
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
+    
 }
 
 @include laptop{
@@ -531,7 +588,7 @@
                         line-height: 1rem;
                     }
                     dl{
-                        padding: 0.75rem 0.5rem;
+                        padding: 0.5rem;
                         flex-direction: column;
                         font-size: 0.75rem;
                         dt{
@@ -540,6 +597,32 @@
                         }
                         dd{
                             width: 100%;
+                        }
+                    }
+                }
+                .titleArea{
+                    margin-bottom: 0.5rem;
+                    h2{
+                        margin-bottom: 0;
+                    }
+                }
+                .crewArea{
+                    li{
+                        a{
+                            flex-basis: 100%;
+                            padding: 0.5rem;
+                            margin-bottom: 0.75rem;
+                            .imageArea{
+                                .MuiAvatar-root{
+                                    width: 50px;
+                                    height: 50px;
+                                }
+                            }
+                            .textArea{
+                                h3{
+                                    font-size: 0.875rem;
+                                }
+                            }
                         }
                     }
                 }

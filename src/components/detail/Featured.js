@@ -7,19 +7,32 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { GetCountry, GetYear, GetRuntime, GetGenre, Providers, RatingStars } from '.';
 
 const Featured = ({data, language, mediaType, id}) => {
-
+  console.log(data);
+  const gender = data.gender;
+  function getGender({gender}){
+    switch (gender) {
+      case 1:
+        return "Female"
+      case 2:
+        return "Male"
+    }
+  }
   return (
     <div className="featuredArea">
       <div className='dimArea'></div>
-      <img src={data.backdrop_path ? `${IMAGE_BASE_URL}w1280/${data.backdrop_path}`:null} alt={data.title?data.title:data.name} className="background" />
+      <img src={data.backdrop_path ? `${IMAGE_BASE_URL}w1280/${data.backdrop_path}`:(data.profile_path? `${IMAGE_BASE_URL}w500/${data.profile_path}`:null)} alt={data.title?data.title:data.name} className="background" />
       <div className="contentArea">
-          <img src={data.poster_path? `${IMAGE_BASE_URL}w500/${data.poster_path}`:null} alt="" className="poster" />
+          <img src={data.poster_path? `${IMAGE_BASE_URL}w500/${data.poster_path}`:(data.profile_path? `${IMAGE_BASE_URL}w500/${data.profile_path}`:null)} alt="" className="poster" />
           <div className='textArea'>
-            <RatingStars rate={data.vote_average} />
+            {mediaType === 'person'?
+              <RatingStars rate={data.popularity} />  : <RatingStars rate={data.vote_average} />  
+            }
             <div className="titleArea">
               <h1>
                 {data.title?data.title:data.name}
-                <GetYear mediaType={mediaType} release={data.release_date} firstAir={data.first_air_date} lastAir={data.last_air_date} />
+                {mediaType !== 'person' &&
+                  <GetYear mediaType={mediaType} release={data.release_date} firstAir={data.first_air_date} lastAir={data.last_air_date} />
+                }
               </h1>
               {data.original_title?
                 (data.original_title === data.title ?null: <p>{data.original_title}</p>)
@@ -27,7 +40,9 @@ const Featured = ({data, language, mediaType, id}) => {
                 (data.original_name === data.name ?null: <p>{data.original_name}</p>)
               }
             </div>
-            <ul className="basicInfo">
+            {mediaType !== 'person' ?
+            <>
+              <ul className="basicInfo">
                 <li className="mediaType">{mediaType.toUpperCase()}</li>
                 <li><GetRuntime language={language} mediaType={mediaType} runTime={data.runtime} epRunTime={data.episode_run_time} /></li>
                 <li className='genres'><GetGenre genres={data.genres} /></li>
@@ -37,6 +52,15 @@ const Featured = ({data, language, mediaType, id}) => {
                 uri={`${API_URL}${mediaType}/${id}/watch/providers?api_key=${API_KEY}&language=${language}`} 
                 renderSuccess={providers}
               />
+            </>
+            :
+            <ul className="basicInfo">
+              <li className="mediaType">{mediaType.toUpperCase()}</li>
+              <li className="">{getGender({gender})}</li>
+              <li className="">{data.known_for_department}</li>
+              <li className="">{data.birthday}</li>
+            </ul>
+            }
           </div>
           <Fab size="large" color="secondary" className="addNotion">
             <Checkbox icon={<NotionIcon />} aria-label="add" checkedIcon={<CheckRoundedIcon />} />
@@ -50,7 +74,5 @@ const Featured = ({data, language, mediaType, id}) => {
     )
   }
 }
-
-
 
 export default Featured

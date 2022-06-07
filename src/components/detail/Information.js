@@ -7,6 +7,7 @@ const Information = ({data, language, mediaType}) => {
 
     return (
         <div className='tabArea'>
+            {mediaType !== 'person' &&
             <div className='items'>
                 <div className='tableArea'>
                     <dl>
@@ -44,12 +45,19 @@ const Information = ({data, language, mediaType}) => {
                     </dl>
                 </div>
             </div>
+            }
             {data.overview ?
                 <div className='items'>
                     <h2>{language === 'ko-KR'? '줄거리':'Overview'}</h2>
                     <p>{data.overview}</p>
                 </div>
-                :null
+                :(data.biography ?
+                    <div className='items'>
+                        <h2>{language === 'ko-KR'? '바이오그래피':'Biography'}</h2>
+                        <p>{data.biography}</p>
+                    </div>
+                    : null
+                )
             }
         </div>
     )

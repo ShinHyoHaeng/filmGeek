@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import React from 'react';
 import { API_URL, API_KEY } from '../data/constants'
 import { SearchData, ResultList } from '../components/search'
 import Fetch from '../lib/Fetch'

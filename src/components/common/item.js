@@ -18,7 +18,7 @@ const Item = ({id, image, profile, title, mediaType, query, language, page}) => 
             case "movie":
             return <Chip icon={<TheatersIcon />} color="primary"/>;
             case "person":
-            return <Chip icon={<PersonIcon />} color="warning"/>;
+            return <Chip icon={<PersonIcon />} color="default"/>;
             default:
             return <Chip icon={<QuestionMarkIcon />}/>;;
         }

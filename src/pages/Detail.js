@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { useParams, useLocation, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
 import { Similar, Crews, Featured, Information } from '../components/detail';
 import { Tabs, Tab, Box } from '@mui/material';
@@ -49,7 +49,6 @@ export default function Detail({language, query, page}) {
   const mediaType = params.mediaType;
   const id = params.id;
   
-  const location = useLocation();
   return (
     <div className='container detailPage'>
       <Fetch 
@@ -57,6 +56,7 @@ export default function Detail({language, query, page}) {
         renderSuccess={featured}
       />
       <div className='infoArea'>
+        {mediaType !== 'person' ?
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={value} onChange={handleChange} textColor="primary"  indicatorColor="primary">
@@ -84,6 +84,25 @@ export default function Detail({language, query, page}) {
                 />
             </TabPanel>
         </Box>
+        :
+        <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <Tabs value={value} onChange={handleChange} textColor="primary"  indicatorColor="primary">
+                <Tab label={language === 'ko-KR'? '기본 정보':'Details'} {...a11yProps(0)} />
+                <Tab label={language === 'ko-KR'? '출연작':'Filmography'} {...a11yProps(1)} />
+              </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+            <Fetch 
+              uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
+              renderSuccess={information}
+            />
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              출연작
+            </TabPanel>
+        </Box>
+        }
       </div>
     </div> 
   )
