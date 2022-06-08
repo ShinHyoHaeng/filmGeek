@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { IMAGE_BASE_URL } from '../../data/constants';
 import { Button, Avatar } from '@mui/material';
 
-const Crews = ({data, language, id}) => {
+const Crews = ({data, language, query, page}) => {
   const [all, isAll] = useState(false);
 
   const casts = data.cast;
@@ -21,7 +21,6 @@ const Crews = ({data, language, id}) => {
     return 0;
   })
 
-  console.log(casts)
   
   function getCasts(all){
     if(all){

@@ -4,7 +4,7 @@ import { API_URL, API_KEY } from '../../data/constants';
 import Fetch from '../../lib/Fetch';
 
 const Information = ({data, language, mediaType}) => {
-
+    console.log(data);
     return (
         <div className='tabArea'>
             {mediaType !== 'person' &&
@@ -20,7 +20,7 @@ const Information = ({data, language, mediaType}) => {
                     </dl>
                     <dl>
                         <dt>{language === 'ko-KR'? '제작 국가':'Production Countries'}</dt>
-                        <dd><GetCountry prodCountries={data.production_countries} language={language}/></dd>
+                        <dd><GetCountry mediaType={mediaType} prodCountries={data.production_countries} language={language}/></dd>
                     </dl>
                     <dl>
                         <dt>{language === 'ko-KR'? '장르':'Genres'}</dt>
@@ -53,7 +53,7 @@ const Information = ({data, language, mediaType}) => {
                 </div>
                 :(data.biography ?
                     <div className='items'>
-                        <h2>{language === 'ko-KR'? '바이오그래피':'Biography'}</h2>
+                        <h2>{language === 'ko-KR'? '약력':'Biography'}</h2>
                         <p>{data.biography}</p>
                     </div>
                     : null

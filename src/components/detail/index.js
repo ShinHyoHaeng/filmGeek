@@ -9,4 +9,7 @@ export { default as GetGenre } from './GetGenre'
 export { default as GetCountry } from './GetCountry'
 export { default as GetRuntime } from './GetRuntime'
 export { default as GetCompanies } from './GetCompanies'
+export { default as GetStatus } from './GetStatus'
+
 export { default as RatingStars } from './RatingStars'
+export { default as Filmography } from './Filmography'

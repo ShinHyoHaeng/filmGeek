@@ -6,9 +6,11 @@ import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRound
 import Item from '../common/Item'
 
 const ResultList = ({ data, mediaType, language, query, page, setPage }) => {
+
+  console.log(data)
+
   const totalCnt = data.total_results;
   const results = data.results;
-  const currentPage = data.page;
   const totalPages = data.total_pages;
 
   return (

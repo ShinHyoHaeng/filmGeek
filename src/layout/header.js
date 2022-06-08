@@ -11,8 +11,10 @@ export default function Header(props) {
   
   const navigate = useNavigate();
   const location = useLocation();
+
   function handleClick() {
     const destination = location.search;
+    console.log(destination)
     return navigate({
       pathname: '/home',
       search: destination
@@ -95,7 +97,7 @@ export default function Header(props) {
               </IconButton>
             }
             {!location.pathname.includes('/detail') && 
-              <Link to={`/home`}>
+              <Link to={`/`}>
                 <h1>tmdb2notion</h1>
               </Link>
             }

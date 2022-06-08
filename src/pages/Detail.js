@@ -1,8 +1,8 @@
-import React from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
-import { Similar, Crews, Featured, Information } from '../components/detail';
+import { Similar, Crews, Featured, Information, Filmography } from '../components/detail';
 import { Tabs, Tab, Box } from '@mui/material';
 import Fetch from '../lib/Fetch'
 import '../style/detail.scss'
@@ -38,7 +38,7 @@ function a11yProps(index) {
 
 export default function Detail({language, query, page}) {
 
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -59,7 +59,7 @@ export default function Detail({language, query, page}) {
         {mediaType !== 'person' ?
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} textColor="primary"  indicatorColor="primary">
+              <Tabs value={value} onChange={handleChange} textColor="primary" indicatorColor="primary">
                 <Tab label={language === 'ko-KR'? '기본 정보':'Details'} {...a11yProps(0)} />
                 <Tab label={language === 'ko-KR'? '출연/제작':'Casts'} {...a11yProps(1)} />
                 <Tab label={language === 'ko-KR'? '비슷한 작품':'similar to'} {...a11yProps(2)} />
@@ -93,13 +93,16 @@ export default function Detail({language, query, page}) {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-            <Fetch 
-              uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
-              renderSuccess={information}
-            />
+              <Fetch 
+                uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
+                renderSuccess={information}
+              />
             </TabPanel>
             <TabPanel value={value} index={1}>
-              출연작
+              <Fetch 
+                uri={`${API_URL}${mediaType}/${id}/combined_credits?api_key=${API_KEY}&language=${language}`} 
+                renderSuccess={filmography}
+              />
             </TabPanel>
         </Box>
         }
@@ -135,6 +138,14 @@ export default function Detail({language, query, page}) {
     return (
       <>
         <Similar data={data} language={language} id={id} />
+      </>
+    )
+  }
+
+  function filmography({data}){
+    return (
+      <>
+        <Filmography data={data} language={language} id={id} />
       </>
     )
   }
