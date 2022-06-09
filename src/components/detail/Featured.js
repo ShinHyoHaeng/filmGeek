@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../data/constants';
 import Fetch from '../../lib/Fetch';
 import { Fab, Checkbox } from '@mui/material';
@@ -7,6 +8,8 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { GetCountry, GetYear, GetRuntime, GetGenre, Providers, RatingStars, GetStatus } from '.';
 
 const Featured = ({data, language, mediaType, id}) => {
+  const { t } = useTranslation('translations', {keyPrefix:'pages.Detail.Featured'});
+
   const gender = data.gender;
   function getGender ({gender}){
     switch (gender) {
@@ -67,7 +70,7 @@ const Featured = ({data, language, mediaType, id}) => {
             <ul className="basicInfo">
               <li className="">{getGender({gender})}</li>
               <li className="">{data.known_for_department}</li>
-              <li className="">{data.birthday}(<GetYear mediaType={mediaType} birthday={data.birthday}/>{language === 'ko-KR'? '세':' years old'})</li>
+              <li className="">{data.birthday}(<GetYear mediaType={mediaType} birthday={data.birthday}/>{t('years')})</li>
               <li><GetCountry mediaType={mediaType} placeOfBirth={data.place_of_birth} language={language}/></li>
             </ul>
             }

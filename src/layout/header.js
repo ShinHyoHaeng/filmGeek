@@ -1,4 +1,5 @@
 import * as React from 'react';
+import i18next from 'i18next';
 import PropTypes from 'prop-types';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AppBar, Toolbar, CssBaseline, useScrollTrigger, Box, Fab, Zoom, Badge, IconButton, ToggleButton, ToggleButtonGroup } from '@mui/material';
@@ -6,6 +7,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import { ReactComponent as NotionIcon } from '../assets/images/notion.svg';
 import '../style/common.scss'
+
 
 export default function Header(props) {
   
@@ -83,6 +85,7 @@ export default function Header(props) {
   const handleLanguage = (event, newLanguage) => {
     if (newLanguage.length) {
       props.setLanguage(newLanguage);
+      i18next.changeLanguage(newLanguage);
     }
   };
   return (

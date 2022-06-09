@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function GetYear({mediaType, release, firstAir, lastAir, birthday}) {
     let first = firstAir || '';
     let last = lastAir || '';

@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
 import { IMAGE_BASE_URL } from '../../data/constants';
 import { Button, Avatar } from '@mui/material';
 
 const Crews = ({data, language, query, page}) => {
+  const { t } = useTranslation('translations', {keyPrefix:'pages.Detail.Crews'});
+
   const [all, isAll] = useState(false);
 
   const casts = data.cast;
@@ -68,7 +71,7 @@ const Crews = ({data, language, query, page}) => {
         {crews &&
         <>
           <div className='titleArea'>
-            <h2>{language === 'ko-KR'? '감독/제작자':'Crews'}</h2>
+            <h2>{t('crews')}</h2>
           </div>
           <ul className="crewArea">
             {crews.map((crew) => (
@@ -94,14 +97,14 @@ const Crews = ({data, language, query, page}) => {
         {casts &&
         <>
           <div className='titleArea'>
-            <h2>{language === 'ko-KR'? '출연진':'Casts'}</h2>
+            <h2>{t('casts')}</h2>
             <Button 
               variant="outlined"
               color="secondary"
               size="small"
               onClick={() => {isAll(true)}}
             >
-              {language === 'ko-KR'? '모두 보기':'Show All'}
+              {t('showAll')}
             </Button>
           </div>
           

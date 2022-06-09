@@ -1,27 +1,21 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 export default function GetRuntime({language, mediaType, runTime, epRunTime}) {
-    
-    let runningTime = 0;
-    if(mediaType === 'tv'){
-        runningTime = epRunTime
-    }else if(mediaType === 'movie'){
-        runningTime = runTime
-    }
-    const hour = Math.floor(runningTime/60);
-    const min = runningTime%60;
-    
+  const { t } = useTranslation('translations', {keyPrefix:'pages.Detail.Featured'});
+
+  let runningTime = 0;
+  if(mediaType === 'tv'){
+      runningTime = epRunTime
+  }else if(mediaType === 'movie'){
+      runningTime = runTime
+  }
+  const hour = Math.floor(runningTime/60);
+  const min = runningTime%60;
+  
   return (
       <span>
-          {language === 'ko-KR' ? 
-            hour ? `${hour}시간 ${min}분` : `${min}분`
-            :
-            hour ? `${hour}hr ${min}min` : `${min}min`
-          }
-          
+          {hour ? `${hour}${t('hour')} ${min}${t('min')}` : `${min}${t('min')}`}
       </span>
-
-    // data.runtime? data.runtime:data.episode_run_time[0]
-    // language === 'ko-KR'? '분':' min.'
   )
 }

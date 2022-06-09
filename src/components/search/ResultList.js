@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useTranslation } from 'react-i18next';
 import { Grid, IconButton } from "@material-ui/core"
 import { IMAGE_BASE_URL } from "../../data/constants";
 import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
@@ -6,6 +7,8 @@ import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRound
 import Item from '../common/Item'
 
 const ResultList = ({ data, mediaType, language, query, page, setPage }) => {
+
+  const { t } = useTranslation('translations', {keyPrefix:'pages.Search'});
 
   console.log(data)
 
@@ -16,7 +19,7 @@ const ResultList = ({ data, mediaType, language, query, page, setPage }) => {
   return (
     <div className="compArea resultList">
       <div className="listInfo">
-        <p className="total">검색 결과: 총 {totalCnt.toLocaleString({language})}건({page.toLocaleString({language})}/{totalPages.toLocaleString({language})} 페이지)</p>
+        <p className="total">{t('results')}: {t('total')} {totalCnt.toLocaleString({language})}{t('count')}({page.toLocaleString({language})}/{totalPages.toLocaleString({language})} {t('pages')})</p>
         <ul className="pageNavigate">
           <li className="prevButton">
             <IconButton aria-label="prev page" onClick={() => setPage(page - 1)} disabled={page === 1}>

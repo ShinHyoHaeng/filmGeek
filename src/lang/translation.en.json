@@ -1,0 +1,43 @@
+{
+    "pages":{
+        "Search":{
+            "results":"Results",
+            "total": "Total",
+            "count":"",
+            "pages":"pages"
+        },
+        "Detail":{
+            "details":"Details",
+            "casts":"Casts",
+            "similar":"Similar to",
+            "filmography":"Filmography",
+            "Featured":{
+                "years":" years old",
+                "hour":"hr",
+                "min":"min",
+                "rumored":"Rumored",
+                "planned":"Planned",
+                "inProduction":"In Production",
+                "postProduction":"Post Production",
+                "released":"Released",
+                "canceled":"Canceled"
+            },
+            "Information":{
+                "originalTitle":"Original Title",
+                "release":"Release Date",
+                "prodCountries":"Production Countries",
+                "genres":"Genres",
+                "runTime":"Running Time",
+                "prodCompanies":"Production Companies",
+                "providers":"Providers",
+                "overview":"Overview",
+                "biography":"Biography"
+            },
+            "Crews":{
+                "crews":"Crews",
+                "casts":"Casts",
+                "showAll":"Show All"
+            }
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
@@ -6,6 +7,7 @@ import { Similar, Crews, Featured, Information, Filmography } from '../component
 import { Tabs, Tab, Box } from '@mui/material';
 import Fetch from '../lib/Fetch'
 import '../style/detail.scss'
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,6 +40,8 @@ function a11yProps(index) {
 
 export default function Detail({language, query, page}) {
 
+  const { t } = useTranslation('translations', {keyPrefix:'pages.Detail'});
+
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -60,9 +64,9 @@ export default function Detail({language, query, page}) {
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={value} onChange={handleChange} textColor="primary" indicatorColor="primary">
-                <Tab label={language === 'ko-KR'? '기본 정보':'Details'} {...a11yProps(0)} />
-                <Tab label={language === 'ko-KR'? '출연/제작':'Casts'} {...a11yProps(1)} />
-                <Tab label={language === 'ko-KR'? '비슷한 작품':'similar to'} {...a11yProps(2)} />
+                <Tab label={t('details')} {...a11yProps(0)} />
+                <Tab label={t('casts')} {...a11yProps(1)} />
+                <Tab label={t('similar')}{...a11yProps(2)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
@@ -88,8 +92,8 @@ export default function Detail({language, query, page}) {
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={value} onChange={handleChange} textColor="primary"  indicatorColor="primary">
-                <Tab label={language === 'ko-KR'? '기본 정보':'Details'} {...a11yProps(0)} />
-                <Tab label={language === 'ko-KR'? '출연작':'Filmography'} {...a11yProps(1)} />
+                <Tab label={t('details')} {...a11yProps(0)} />
+                <Tab label={t('filmography')} {...a11yProps(1)} />
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>

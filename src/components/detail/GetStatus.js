@@ -1,24 +1,23 @@
-import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 export default function GetStatus({status}) {
-    function getStatustoKr({status}){
-        switch (status){
-            case 'Rumored':
-                return ""
-            case 'Planned':
-                return ""
-            case "In Production":
-                return ""
-            case "Post Production":
-                return ""
-            case "Released":
-                return "개봉"
-            case "Canceled":
-                return "제작 취소"
-            default:
-                return null;
-        }
-    }
 
-  return getStatustoKr({status})
+    const { t } = useTranslation('translations', {keyPrefix:'pages.Detail.Featured'});
+    
+    switch (status){
+        case 'Rumored':
+            return t('rumored');
+        case 'Planned':
+            return t('planned');
+        case "In Production":
+            return t('inProduction');
+        case "Post Production":
+            return t('postProduction');
+        case "Released":
+            return t('released');
+        case "Canceled":
+            return t('canceled');
+        default:
+            return null;
+    }
 }

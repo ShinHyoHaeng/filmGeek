@@ -1,0 +1,43 @@
+{
+    "pages":{
+        "Search":{
+            "results":"검색 결과",
+            "total":"총",
+            "count":"건",
+            "pages":"페이지"
+        },
+        "Detail":{
+            "details":"기본 정보",
+            "casts":"출연/제작",
+            "similar":"비슷한 작품",
+            "filmography":"출연작",
+            "Featured":{
+                "years":"세",
+                "hour":"시간",
+                "min":"분",
+                "rumored":"Rumored",
+                "planned":"Planned",
+                "inProduction":"In Production",
+                "postProduction":"Post Production",
+                "released":"개봉",
+                "canceled":"취소"
+            },
+            "Information":{
+                "originalTitle":"원제",
+                "release":"개봉일/공개일",
+                "prodCountries":"제작 국가",
+                "genres":"장르",
+                "runTime":"상영시간",
+                "prodCompanies":"제작사",
+                "providers":"OTT 서비스",
+                "overview":"줄거리",
+                "biography":"약력"
+            },
+            "Crews":{
+                "crews":"감독/제작자",
+                "casts":"출연진",
+                "showAll":"모두 보기"
+            }
+        }
+    }
+}

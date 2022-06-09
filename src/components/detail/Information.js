@@ -1,41 +1,42 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { GetCountry, GetRuntime, GetGenre, GetCompanies, Providers } from '.';
 import { API_URL, API_KEY } from '../../data/constants';
 import Fetch from '../../lib/Fetch';
 
 const Information = ({data, language, mediaType}) => {
-    console.log(data);
+    const { t } = useTranslation('translations', {keyPrefix:'pages.Detail.Information'});
     return (
         <div className='tabArea'>
             {mediaType !== 'person' &&
             <div className='items'>
                 <div className='tableArea'>
                     <dl>
-                        <dt>{language === 'ko-KR'? '원제':'Original Title'}</dt>
+                        <dt>{t('originalTitle')}</dt>
                         <dd>{data.original_title? data.original_title:data.original_name}</dd>
                     </dl>
                     <dl>
-                        <dt>{language === 'ko-KR'? '개봉일/공개일':'Release Date'}</dt>
+                        <dt>{t('release')}</dt>
                         <dd>{data.release_date? data.release_date:data.first_air_date}</dd>
                     </dl>
                     <dl>
-                        <dt>{language === 'ko-KR'? '제작 국가':'Production Countries'}</dt>
+                        <dt>{t('prodCountries')}</dt>
                         <dd><GetCountry mediaType={mediaType} prodCountries={data.production_countries} language={language}/></dd>
                     </dl>
                     <dl>
-                        <dt>{language === 'ko-KR'? '장르':'Genres'}</dt>
+                        <dt>{t('genres')}</dt>
                         <dd><GetGenre genres={data.genres} /></dd>
                     </dl>
                     <dl>
-                        <dt>{language === 'ko-KR'? '상영시간':'Running Time'}</dt>
+                        <dt>{t('runTime')}</dt>
                         <dd><GetRuntime language={language} mediaType={mediaType} runTime={data.runtime} epRunTime={data.episode_run_time} /></dd>
                     </dl>
                     <dl>
-                        <dt>{language === 'ko-KR'? '제작사':'Production Companies'}</dt>
+                        <dt>{t('prodCompanies')}</dt>
                         <dd><GetCompanies prodCompanies={data.production_companies}/></dd>
                     </dl>
                     <dl className='showMobile'>
-                        <dt>{language === 'ko-KR'? 'OTT 서비스':'Providers'}</dt>
+                        <dt>{t('providers')}</dt>
                         <dd>
                             <Fetch 
                                 uri={`${API_URL}${mediaType}/${data.id}/watch/providers?api_key=${API_KEY}&language=${language}`} 
@@ -48,12 +49,12 @@ const Information = ({data, language, mediaType}) => {
             }
             {data.overview ?
                 <div className='items'>
-                    <h2>{language === 'ko-KR'? '줄거리':'Overview'}</h2>
+                    <h2>{t('overview')}</h2>
                     <p>{data.overview}</p>
                 </div>
                 :(data.biography ?
                     <div className='items'>
-                        <h2>{language === 'ko-KR'? '약력':'Biography'}</h2>
+                        <h2>{t('biography')}</h2>
                         <p>{data.biography}</p>
                     </div>
                     : null
