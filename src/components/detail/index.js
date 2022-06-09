@@ -3,6 +3,7 @@ export { default as Crews } from './Crews'
 export { default as Featured } from './Featured'
 export { default as Information } from './Information'
 export { default as Providers } from './Providers'
+export { default as Collections } from './Collections'
 
 export { default as GetYear } from './GetYear'
 export { default as GetGenre } from './GetGenre'

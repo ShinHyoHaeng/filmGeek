@@ -31,7 +31,8 @@
                 "prodCompanies":"Production Companies",
                 "providers":"Providers",
                 "overview":"Overview",
-                "biography":"Biography"
+                "biography":"Biography",
+                "collections":"Collections"
             },
             "Crews":{
                 "crews":"Crews",

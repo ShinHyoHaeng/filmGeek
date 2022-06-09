@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { GetCountry, GetRuntime, GetGenre, GetCompanies, Providers } from '.';
+import { GetCountry, GetRuntime, GetGenre, GetCompanies, Providers, Collections } from '.';
 import { API_URL, API_KEY } from '../../data/constants';
 import Fetch from '../../lib/Fetch';
 
@@ -9,43 +9,45 @@ const Information = ({data, language, mediaType}) => {
     return (
         <div className='tabArea'>
             {mediaType !== 'person' &&
-            <div className='items'>
-                <div className='tableArea'>
-                    <dl>
-                        <dt>{t('originalTitle')}</dt>
-                        <dd>{data.original_title? data.original_title:data.original_name}</dd>
-                    </dl>
-                    <dl>
-                        <dt>{t('release')}</dt>
-                        <dd>{data.release_date? data.release_date:data.first_air_date}</dd>
-                    </dl>
-                    <dl>
-                        <dt>{t('prodCountries')}</dt>
-                        <dd><GetCountry mediaType={mediaType} prodCountries={data.production_countries} language={language}/></dd>
-                    </dl>
-                    <dl>
-                        <dt>{t('genres')}</dt>
-                        <dd><GetGenre genres={data.genres} /></dd>
-                    </dl>
-                    <dl>
-                        <dt>{t('runTime')}</dt>
-                        <dd><GetRuntime language={language} mediaType={mediaType} runTime={data.runtime} epRunTime={data.episode_run_time} /></dd>
-                    </dl>
-                    <dl>
-                        <dt>{t('prodCompanies')}</dt>
-                        <dd><GetCompanies prodCompanies={data.production_companies}/></dd>
-                    </dl>
-                    <dl className='showMobile'>
-                        <dt>{t('providers')}</dt>
-                        <dd>
-                            <Fetch 
-                                uri={`${API_URL}${mediaType}/${data.id}/watch/providers?api_key=${API_KEY}&language=${language}`} 
-                                renderSuccess={providers}
-                            />
-                        </dd>
-                    </dl>
+            <>
+                <div className='items'>
+                    <div className='tableArea'>
+                        <dl>
+                            <dt>{t('originalTitle')}</dt>
+                            <dd>{data.original_title? data.original_title:data.original_name}</dd>
+                        </dl>
+                        <dl>
+                            <dt>{t('release')}</dt>
+                            <dd>{data.release_date? data.release_date:data.first_air_date}</dd>
+                        </dl>
+                        <dl>
+                            <dt>{t('prodCountries')}</dt>
+                            <dd><GetCountry mediaType={mediaType} prodCountries={data.production_countries} language={language}/></dd>
+                        </dl>
+                        <dl>
+                            <dt>{t('genres')}</dt>
+                            <dd><GetGenre genres={data.genres} /></dd>
+                        </dl>
+                        <dl>
+                            <dt>{t('runTime')}</dt>
+                            <dd><GetRuntime language={language} mediaType={mediaType} runTime={data.runtime} epRunTime={data.episode_run_time} /></dd>
+                        </dl>
+                        <dl>
+                            <dt>{t('prodCompanies')}</dt>
+                            <dd><GetCompanies prodCompanies={data.production_companies}/></dd>
+                        </dl>
+                        <dl className='showMobile'>
+                            <dt>{t('providers')}</dt>
+                            <dd>
+                                <Fetch 
+                                    uri={`${API_URL}${mediaType}/${data.id}/watch/providers?api_key=${API_KEY}&language=${language}`} 
+                                    renderSuccess={providers}
+                                />
+                            </dd>
+                        </dl>
+                    </div>
                 </div>
-            </div>
+            </>
             }
             {data.overview ?
                 <div className='items'>
@@ -60,6 +62,17 @@ const Information = ({data, language, mediaType}) => {
                     : null
                 )
             }
+            {data.belongs_to_collection &&
+                <div className='items'>
+                    <div className='titleArea'>
+                        <h2>{t('collections')}</h2>
+                    </div>
+                    <Fetch 
+                        uri={`${API_URL}collection/${data.belongs_to_collection.id}?api_key=${API_KEY}&language=${language}`} 
+                        renderSuccess={collections}
+                    />
+                </div>
+            }
         </div>
     )
     function providers({data}){
@@ -67,6 +80,12 @@ const Information = ({data, language, mediaType}) => {
           <Providers data={data} language={language} />
         )
       }
+
+    function collections({data}){
+    return (
+        <Collections data={data} language={language} mediaType={mediaType} />
+    )
+    }
 }
 
 

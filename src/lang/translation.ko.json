@@ -31,7 +31,8 @@
                 "prodCompanies":"제작사",
                 "providers":"OTT 서비스",
                 "overview":"줄거리",
-                "biography":"약력"
+                "biography":"약력",
+                "collections":"시리즈"
             },
             "Crews":{
                 "crews":"감독/제작자",

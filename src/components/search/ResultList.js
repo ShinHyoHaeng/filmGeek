@@ -17,7 +17,7 @@ const ResultList = ({ data, mediaType, language, query, page, setPage }) => {
   const totalPages = data.total_pages;
 
   return (
-    <div className="compArea resultList">
+    <div className="compArea resultList itemList">
       <div className="listInfo">
         <p className="total">{t('results')}: {t('total')} {totalCnt.toLocaleString({language})}{t('count')}({page.toLocaleString({language})}/{totalPages.toLocaleString({language})} {t('pages')})</p>
         <ul className="pageNavigate">

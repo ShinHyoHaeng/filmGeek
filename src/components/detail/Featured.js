@@ -8,6 +8,7 @@ import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { GetCountry, GetYear, GetRuntime, GetGenre, Providers, RatingStars, GetStatus } from '.';
 
 const Featured = ({data, language, mediaType, id}) => {
+  console.log(data)
   const { t } = useTranslation('translations', {keyPrefix:'pages.Detail.Featured'});
 
   const gender = data.gender;
