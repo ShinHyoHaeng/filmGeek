@@ -11,6 +11,8 @@
             "casts":"출연/제작",
             "similar":"비슷한 작품",
             "filmography":"출연작",
+            "collections":"시리즈",
+            "seasons":"시즌",
             "Featured":{
                 "years":"세",
                 "hour":"시간",

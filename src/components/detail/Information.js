@@ -1,6 +1,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { GetCountry, GetRuntime, GetGenre, GetCompanies, Providers, Collections } from '.';
+import { GetCountry, GetRuntime, GetGenre, GetCompanies, Providers } from '.';
 import { API_URL, API_KEY } from '../../data/constants';
 import Fetch from '../../lib/Fetch';
 
@@ -62,17 +62,6 @@ const Information = ({data, language, mediaType}) => {
                     : null
                 )
             }
-            {data.belongs_to_collection &&
-                <div className='items'>
-                    <div className='titleArea'>
-                        <h2>{t('collections')}</h2>
-                    </div>
-                    <Fetch 
-                        uri={`${API_URL}collection/${data.belongs_to_collection.id}?api_key=${API_KEY}&language=${language}`} 
-                        renderSuccess={collections}
-                    />
-                </div>
-            }
         </div>
     )
     function providers({data}){
@@ -80,12 +69,6 @@ const Information = ({data, language, mediaType}) => {
           <Providers data={data} language={language} />
         )
       }
-
-    function collections({data}){
-    return (
-        <Collections data={data} language={language} mediaType={mediaType} />
-    )
-    }
 }
 
 

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
-import { Similar, Crews, Featured, Information, Filmography } from '../components/detail';
+import { Similar, Crews, Featured, Information, Filmography, Collections, Seasons } from '../components/detail';
 import { Tabs, Tab, Box } from '@mui/material';
 import Fetch from '../lib/Fetch'
 import '../style/detail.scss'
@@ -67,13 +67,19 @@ export default function Detail({language, query, page}) {
                 <Tab label={t('details')} {...a11yProps(0)} />
                 <Tab label={t('casts')} {...a11yProps(1)} />
                 <Tab label={t('similar')}{...a11yProps(2)} />
+                {mediaType === 'movie' &&
+                  <Tab label={t('collections')}{...a11yProps(3)} />
+                }
+                {mediaType === 'tv' &&
+                  <Tab label={t('seasons')}{...a11yProps(3)} />
+                }
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-            <Fetch 
-              uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
-              renderSuccess={information}
-            />
+              <Fetch 
+                uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
+                renderSuccess={information}
+              />
             </TabPanel>
             <TabPanel value={value} index={1}>
               <Fetch 
@@ -87,6 +93,22 @@ export default function Detail({language, query, page}) {
                   renderSuccess={similar}
                 />
             </TabPanel>
+            {mediaType === 'movie' &&
+              <TabPanel value={value} index={3}>
+                <Fetch 
+                  uri={`${API_URL}collection/${data.belongs_to_collection.id}?api_key=${API_KEY}&language=${language}`} 
+                  renderSuccess={collections}
+                />
+              </TabPanel>
+            }
+            {mediaType === 'tv' &&
+              <TabPanel value={value} index={3}>
+                <Fetch 
+                  uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
+                  renderSuccess={seasons}
+                />
+              </TabPanel>
+            }
         </Box>
         :
         <Box sx={{ width: '100%' }}>
@@ -151,6 +173,18 @@ export default function Detail({language, query, page}) {
       <>
         <Filmography data={data} language={language} id={id} />
       </>
+    )
+  }
+
+  function collections({data}){
+    return (
+        <Collections data={data} language={language} mediaType={mediaType} />
+    )
+  }
+
+  function seasons({data}){
+    return (
+        <Seasons data={data} language={language} mediaType={mediaType} id={id} />
     )
   }
 }
