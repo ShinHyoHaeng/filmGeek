@@ -15,3 +15,4 @@ export { default as GetStatus } from './GetStatus'
 
 export { default as RatingStars } from './RatingStars'
 export { default as Filmography } from './Filmography'
+export { default as SeasonsDetail } from './SeasonsDetail'

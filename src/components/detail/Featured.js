@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../data/constants';
 import Fetch from '../../lib/Fetch';
-import { Fab, Checkbox } from '@mui/material';
+import { Fab, Checkbox, Avatar } from '@mui/material';
 import { ReactComponent as NotionIcon } from '../../assets/images/notion.svg';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { GetCountry, GetYear, GetRuntime, GetGenre, Providers, RatingStars, GetStatus } from '.';
@@ -14,12 +14,30 @@ const Featured = ({data, language, mediaType, id}) => {
   const gender = data.gender;
   function getGender ({gender}){
     switch (gender) {
+      case 0:
+        return t('notSpecified')
       case 1:
-        return "Female"
+        return t('female')
       case 2:
-        return "Male"
+        return t('male')
       default:
         return "undefined"
+    }
+  }
+
+  const department = data.known_for_department;
+  function getDepartment({department}){
+    switch (department) {
+      case "Acting":
+        return t('acting')
+      case "Directing":
+        return t('directing')
+      case "Writing":
+        return t('writing')
+      case "Production":
+        return t('production')
+      default:
+        return department;
     }
   }
 
@@ -33,9 +51,18 @@ const Featured = ({data, language, mediaType, id}) => {
   return (
     <div className="featuredArea">
       <div className='dimArea'></div>
-      <img src={data.backdrop_path ? `${IMAGE_BASE_URL}w1280/${data.backdrop_path}`:(data.profile_path? `${IMAGE_BASE_URL}w500/${data.profile_path}`:null)} alt={data.title?data.title:data.name} className="background" />
+      {data.backdrop_path ?
+        <img src={data.backdrop_path ? `${IMAGE_BASE_URL}w1280/${data.backdrop_path}`:(data.profile_path? `${IMAGE_BASE_URL}w500/${data.profile_path}`:null)} alt={data.title?data.title:data.name} className="background" />
+        :
+        <div className='noBg'/>
+      }
       <div className="contentArea">
+        {data.poster_path || data.profile_path ?
           <img src={data.poster_path? `${IMAGE_BASE_URL}w500/${data.poster_path}`:(data.profile_path? `${IMAGE_BASE_URL}w500/${data.profile_path}`:null)} alt="" className="poster" />
+          :
+          <div className='noPoster'><Avatar src="/broken-image.jpg" variant="rounded"/></div>
+        }
+          
           <div className='textArea'>
             <RatingStars mediaType={mediaType} rate={data.vote_average} popular={data.popularity} />
             <div className="titleArea">
@@ -50,8 +77,8 @@ const Featured = ({data, language, mediaType, id}) => {
               :
                 (data.original_name === data.name ?null: <p>{data.original_name}</p>)
               }
-              {alsoKnownAs &&
-                <p>{getKoName({alsoKnownAs})}</p>
+              {language === 'ko-KR' &&
+                alsoKnownAs && <p>{getKoName({alsoKnownAs})}</p>
               }
             </div>
             {mediaType !== 'person' ?
@@ -70,9 +97,9 @@ const Featured = ({data, language, mediaType, id}) => {
             :
             <ul className="basicInfo">
               <li className="">{getGender({gender})}</li>
-              <li className="">{data.known_for_department}</li>
-              <li className="">{data.birthday}(<GetYear mediaType={mediaType} birthday={data.birthday}/>{t('years')})</li>
-              <li><GetCountry mediaType={mediaType} placeOfBirth={data.place_of_birth} language={language}/></li>
+              {data.known_for_department && <li className="">{getDepartment({department})}</li>}
+              {data.birthday && <li className="">{data.birthday}(<GetYear mediaType={mediaType} birthday={data.birthday}/>{t('years')})</li>}
+              {data.place_of_birth && <li><GetCountry mediaType={mediaType} placeOfBirth={data.place_of_birth} language={language}/></li>}
             </ul>
             }
           </div>

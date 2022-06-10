@@ -11,22 +11,30 @@ export default function getCountry({mediaType, prodCountries, placeOfBirth, lang
             const filteredCode = Countries.filter((Countries) =>
                 Countries.alpha2.includes(code)
             )
-            return filteredCode[0].ko;
+
+            if(filteredCode[0]) return filteredCode[0].ko;
+            else return country.name;
+            
         }else{
             return country.name;
         }
     }
 
     function getCountryNameByName({placeOfBirth}){
-        const birthCountury = (placeOfBirth||'').split(', ').at(-1);
-        if(language === 'ko-KR'){   
-            const filteredCtr = Countries.filter((Countries) =>
-                Countries.en.includes(birthCountury)
-            )
-            return filteredCtr[0].ko;
-        }else{
-            return birthCountury;
-        }
+        if(placeOfBirth){
+            let birthCountury;
+            if(placeOfBirth.indexOf(",") === -1) birthCountury = (placeOfBirth||'').split(' - ').at(-1);
+            else birthCountury = (placeOfBirth||'').split(', ').at(-1);
+            if(language === 'ko-KR'){   
+                const filteredCtr = Countries.filter((Countries) =>
+                    Countries.en.includes(birthCountury)
+                )
+                return filteredCtr[0].ko;
+            }else{
+                return birthCountury;
+            }
+        }else return "undefined"
+        
     }
 
     switch(mediaType){

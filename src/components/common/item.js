@@ -7,7 +7,7 @@ import LiveTvIcon from '@mui/icons-material/LiveTv';
 import PersonIcon from '@mui/icons-material/Person';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
-const Item = ({id, image, profile, title, mediaType, query, language, page}) => {
+const Item = ({id, image, profile, title, mediaType, query, language, page, setValue}) => {
     const [isHovering, setIsHovering] = useState(false);
     const [isActive, setIsActive] = useState(false);
 
@@ -23,6 +23,21 @@ const Item = ({id, image, profile, title, mediaType, query, language, page}) => 
             return <Chip icon={<QuestionMarkIcon />}/>;;
         }
     }
+    
+    const handleClick = (event) => {
+        const anchor = (event.target.ownerDocument || document).querySelector(
+          '#back-to-top-anchor',
+        );
+    
+        if (anchor) {
+          anchor.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        }
+
+        setValue(0);
+    };
 
     return (
         <Grid item>
@@ -32,7 +47,7 @@ const Item = ({id, image, profile, title, mediaType, query, language, page}) => 
             onTouchStart={() => setIsActive(true)} 
             onTouchEnd={() => setIsActive(false)}
           >
-            <Link to={`/detail/${mediaType}/${id}?language=${language}&query=${query}&page=${page}`}>
+            <Link to={`/detail/${mediaType}/${id}?language=${language}&query=${query}&page=${page}`} onClick={handleClick}>
                 {!image ?
                     (profile ?
                         <>
@@ -62,4 +77,4 @@ const Item = ({id, image, profile, title, mediaType, query, language, page}) => 
     )
 }
 
-export default Item
+export default Item;

@@ -13,6 +13,7 @@
             "filmography":"Filmography",
             "collections":"Collections",
             "seasons":"Seasons",
+            "noProvider":"No providers",
             "Featured":{
                 "years":" years old",
                 "hour":"hr",
@@ -22,7 +23,15 @@
                 "inProduction":"In Production",
                 "postProduction":"Post Production",
                 "released":"Released",
-                "canceled":"Canceled"
+                "canceled":"Canceled",
+                "returningSeries":"Returning Series",
+                "notSpecified":"Not specified",
+                "female":"Female",
+                "male":"Male",
+                "acting":"Acting",
+                "directing":"Directing",
+                "writing":"Writing",
+                "production":"Production"
             },
             "Information":{
                 "originalTitle":"Original Title",
@@ -34,7 +43,8 @@
                 "providers":"Providers",
                 "overview":"Overview",
                 "biography":"Biography",
-                "collections":"Collections"
+                "collections":"Collections",
+                "noResult":"No Results"
             },
             "Crews":{
                 "crews":"Crews",

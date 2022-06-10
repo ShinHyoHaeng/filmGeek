@@ -17,6 +17,8 @@ export default function GetStatus({status}) {
             return t('released');
         case "Canceled":
             return t('canceled');
+        case "Returning Series":
+            return t('returningSeries')
         default:
             return null;
     }

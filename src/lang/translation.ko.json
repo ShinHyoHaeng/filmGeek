@@ -12,7 +12,8 @@
             "similar":"비슷한 작품",
             "filmography":"출연작",
             "collections":"시리즈",
-            "seasons":"시즌",
+            "seasons":"시즌 정보",
+            "noProvider":"현재 해당 작품을 볼 수 있는 서비스가 존재하지 않습니다.",
             "Featured":{
                 "years":"세",
                 "hour":"시간",
@@ -22,7 +23,15 @@
                 "inProduction":"In Production",
                 "postProduction":"Post Production",
                 "released":"개봉",
-                "canceled":"취소"
+                "canceled":"취소",
+                "returningSeries":"다음 시즌 제작중",
+                "notSpecified":"성별 미상",
+                "female":"여성",
+                "male":"남성",
+                "acting":"배우",
+                "directing":"감독",
+                "writing":"작가",
+                "production":"프로듀서"
             },
             "Information":{
                 "originalTitle":"원제",
@@ -34,7 +43,8 @@
                 "providers":"OTT 서비스",
                 "overview":"줄거리",
                 "biography":"약력",
-                "collections":"시리즈"
+                "collections":"시리즈",
+                "noResult":"정보가 없습니다"
             },
             "Crews":{
                 "crews":"감독/제작자",

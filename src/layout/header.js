@@ -126,7 +126,7 @@ export default function Header(props) {
       </ElevationScroll>
       <Toolbar id="back-to-top-anchor"/>
       <ScrollTop {...props}>
-        <Fab color="primary" size="small" aria-label="scroll back to top">
+        <Fab color="primary" size="small" id="goToTopButton" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>

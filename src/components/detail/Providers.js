@@ -1,8 +1,12 @@
-import { Chip, Avatar } from '@mui/material';
+import * as React from 'react';
+import { Chip, Avatar, Alert } from '@mui/material';
 import { IMAGE_BASE_URL } from '../../data/constants';
+import { useTranslation } from 'react-i18next';
+import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
 
 const Providers = ({data, language}) => {
-  
+  const { t } = useTranslation('translations', {keyPrefix:'pages.Detail'});
+
   const locale = language.substr(-2);
   const results = data.results;
   const result = results[locale]; // 키 값을 이용해 값 가져오기
@@ -20,7 +24,7 @@ const Providers = ({data, language}) => {
   }
   
   return (
-    providerList[0] &&
+    providerList[0] ?
     <div className='providers'>
       {providerList[0].map((provider) => (
         <Chip
@@ -30,6 +34,16 @@ const Providers = ({data, language}) => {
           variant="outlined"
         />
       ))}
+    </div>
+    :
+    <div className='providers noProviders'>
+      <Alert
+          severity="error"
+          icon={<DoNotDisturbAltIcon fontSize="inherit" />}
+          variant="outlined"
+        >
+          {t('noProvider')}
+        </Alert>
     </div>
   )
 }

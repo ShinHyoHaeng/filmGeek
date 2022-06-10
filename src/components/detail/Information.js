@@ -1,11 +1,20 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next';
-import { GetCountry, GetRuntime, GetGenre, GetCompanies, Providers } from '.';
+import { GetCountry, GetRuntime, GetGenre, GetCompanies, Providers, Collections, Seasons } from '.';
 import { API_URL, API_KEY } from '../../data/constants';
 import Fetch from '../../lib/Fetch';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
-const Information = ({data, language, mediaType}) => {
+const Information = ({dataKo, dataEn, language, mediaType}) => {
+    let data;
+    if(language === 'ko-KR') {
+        data = dataKo
+    }else if(language === 'en-US'){
+        data = dataEn;
+    } 
+
     const { t } = useTranslation('translations', {keyPrefix:'pages.Detail.Information'});
+
     return (
         <div className='tabArea'>
             {mediaType !== 'person' &&
@@ -54,21 +63,53 @@ const Information = ({data, language, mediaType}) => {
                     <h2>{t('overview')}</h2>
                     <p>{data.overview}</p>
                 </div>
-                :(data.biography ?
+                :
+                dataEn.overview?
+                <div className='items'>
+                    <h2>{t('overview')}</h2>
+                    <p>{dataEn.overview}</p>
+                </div>
+                :
+                data.biography ? 
+                <div className='items'>
+                    <h2>{t('biography')}</h2>
+                    <p>{data.biography}</p>
+                </div>
+                :
+                dataEn.biography ?
                     <div className='items'>
                         <h2>{t('biography')}</h2>
-                        <p>{data.biography}</p>
+                        <p>{dataEn.biography}</p>
                     </div>
-                    : null
-                )
+                    :
+                    <div className='items'>
+                        <div className='noResult'>
+                            <QuestionMarkIcon/>
+                            <p>{t('noResult')}</p>
+                        </div>
+                    </div>
+            }
+            {data.belongs_to_collection &&
+                <Fetch 
+                    uri={`${API_URL}collection/${data.belongs_to_collection.id}?api_key=${API_KEY}&language=${language}`} 
+                    renderSuccess={collections}
+                />
+            }
+            {data.seasons &&
+                <Seasons data={data} language={language} mediaType={mediaType}/>
             }
         </div>
     )
     function providers({data}){
         return (
-          <Providers data={data} language={language} />
+            <Providers data={data} language={language} />
         )
-      }
+    }
+    function collections({data}){
+    return (
+        <Collections data={data} language={language} mediaType={mediaType} />
+    )
+    }
 }
 
 

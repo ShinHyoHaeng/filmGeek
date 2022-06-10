@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { API_URL, API_KEY } from '../data/constants'
-import { Similar, Crews, Featured, Information, Filmography, Collections, Seasons } from '../components/detail';
+import { Similar, Crews, Featured, Information, Filmography } from '../components/detail';
 import { Tabs, Tab, Box } from '@mui/material';
 import Fetch from '../lib/Fetch'
+import MultipleFetch from '../lib/MultipleFetch'
 import '../style/detail.scss'
 
 
@@ -41,13 +42,12 @@ function a11yProps(index) {
 export default function Detail({language, query, page}) {
 
   const { t } = useTranslation('translations', {keyPrefix:'pages.Detail'});
-
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  
+
   // 파라미터
   const params = useParams();
   const mediaType = params.mediaType;
@@ -67,18 +67,13 @@ export default function Detail({language, query, page}) {
                 <Tab label={t('details')} {...a11yProps(0)} />
                 <Tab label={t('casts')} {...a11yProps(1)} />
                 <Tab label={t('similar')}{...a11yProps(2)} />
-                {mediaType === 'movie' &&
-                  <Tab label={t('collections')}{...a11yProps(3)} />
-                }
-                {mediaType === 'tv' &&
-                  <Tab label={t('seasons')}{...a11yProps(3)} />
-                }
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Fetch 
-                uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
-                renderSuccess={information}
+              <MultipleFetch 
+                  uri1={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=ko-KR`} 
+                  uri2={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=en-US`} 
+                  renderSuccess={information}
               />
             </TabPanel>
             <TabPanel value={value} index={1}>
@@ -93,22 +88,6 @@ export default function Detail({language, query, page}) {
                   renderSuccess={similar}
                 />
             </TabPanel>
-            {mediaType === 'movie' &&
-              <TabPanel value={value} index={3}>
-                <Fetch 
-                  uri={`${API_URL}collection/${data.belongs_to_collection.id}?api_key=${API_KEY}&language=${language}`} 
-                  renderSuccess={collections}
-                />
-              </TabPanel>
-            }
-            {mediaType === 'tv' &&
-              <TabPanel value={value} index={3}>
-                <Fetch 
-                  uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
-                  renderSuccess={seasons}
-                />
-              </TabPanel>
-            }
         </Box>
         :
         <Box sx={{ width: '100%' }}>
@@ -119,9 +98,10 @@ export default function Detail({language, query, page}) {
               </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-              <Fetch 
-                uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
-                renderSuccess={information}
+              <MultipleFetch 
+                  uri1={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=ko-KR`} 
+                  uri2={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=en-US`} 
+                  renderSuccess={information}
               />
             </TabPanel>
             <TabPanel value={value} index={1}>
@@ -144,10 +124,10 @@ export default function Detail({language, query, page}) {
     )
   }
 
-  function information({data}){
+  function information({data1, data2}){
     return (
       <>
-        <Information data={data} language={language} mediaType={mediaType} id={id} />
+        <Information dataKo={data1} dataEn={data2} language={language} mediaType={mediaType} id={id} />
       </>
     )
   }
@@ -155,7 +135,7 @@ export default function Detail({language, query, page}) {
   function crew({data}){
     return (
       <>
-        <Crews data={data} language={language} id={id} />
+        <Crews data={data} language={language} id={id} setValue={setValue} />
       </>
     )
   }
@@ -163,7 +143,7 @@ export default function Detail({language, query, page}) {
   function similar({data}){
     return (
       <>
-        <Similar data={data} language={language} id={id} />
+        <Similar data={data} mediaType={mediaType} language={language} id={id} setValue={setValue} />
       </>
     )
   }
@@ -173,18 +153,6 @@ export default function Detail({language, query, page}) {
       <>
         <Filmography data={data} language={language} id={id} />
       </>
-    )
-  }
-
-  function collections({data}){
-    return (
-        <Collections data={data} language={language} mediaType={mediaType} />
-    )
-  }
-
-  function seasons({data}){
-    return (
-        <Seasons data={data} language={language} mediaType={mediaType} id={id} />
     )
   }
 }

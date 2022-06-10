@@ -6,7 +6,7 @@ export default function GetRuntime({language, mediaType, runTime, epRunTime}) {
 
   let runningTime = 0;
   if(mediaType === 'tv'){
-      runningTime = epRunTime
+      runningTime = epRunTime[0]
   }else if(mediaType === 'movie'){
       runningTime = runTime
   }

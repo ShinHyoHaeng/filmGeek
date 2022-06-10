@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { IMAGE_BASE_URL } from '../../data/constants';
 import { Button, Avatar } from '@mui/material';
 
-const Crews = ({data, language, query, page}) => {
+const Crews = ({data, language, query, page, setValue}) => {
+
+  console.log(data)
+
   const { t } = useTranslation('translations', {keyPrefix:'pages.Detail.Crews'});
 
   const [all, isAll] = useState(false);
@@ -29,7 +32,7 @@ const Crews = ({data, language, query, page}) => {
     if(all){
       return casts.map((cast) => (
         <li key={cast.order}>
-          <Link to={`/detail/person/${cast.id}?language=${language}`}>
+          <Link to={`/detail/person/${cast.id}?language=${language}`} onClick={()=>setValue(0)}>
             <div className='imageArea'>
               <Avatar
                 src={cast.profile_path? `${IMAGE_BASE_URL}w500/${cast.profile_path}`:null}
@@ -47,7 +50,7 @@ const Crews = ({data, language, query, page}) => {
     }else{
       return casts.slice(0,10).map((cast) => (
         <li key={cast.order}>
-          <Link to={`/detail/person/${cast.id}?language=${language}`}>
+          <Link to={`/detail/person/${cast.id}?language=${language}`} onClick={()=>setValue(0)}>
             <div className='imageArea'>
               <Avatar
                 src={cast.profile_path? `${IMAGE_BASE_URL}w500/${cast.profile_path}`:null}
@@ -75,8 +78,8 @@ const Crews = ({data, language, query, page}) => {
           </div>
           <ul className="crewArea">
             {crews.map((crew) => (
-              <li key={crew.id}>
-                <Link to={`/detail/person/${crew.id}?language=${language}`}>
+              <li key={crew.id} className={crew.job === 'Director'?'directorCol':crew.job === 'Executive Producer'?'producerCol':'crewCol'}>
+                <Link to={`/detail/person/${crew.id}?language=${language}`} onClick={()=>setValue(0)}>
                   <div className='imageArea'>
                   <Avatar
                     src={crew.profile_path? `${IMAGE_BASE_URL}w500/${crew.profile_path}`:null}
