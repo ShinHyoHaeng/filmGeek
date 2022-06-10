@@ -7,7 +7,7 @@ import './lang/i18n'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter basename='/react-tmdb2notion/'>
+  <BrowserRouter>
     <React.StrictMode>
       <App />
     </React.StrictMode>
