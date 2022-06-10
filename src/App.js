@@ -1,6 +1,6 @@
 import { useState, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom';
-import { Header, Footer } from './layout'
+import {Header, Footer} from './layout' 
 import { Search, Detail } from './pages'
 
 const App = () => {
