@@ -8,7 +8,7 @@ export default function Search({language, query, setQuery, page, setPage}) {
   const mediaType = 'movie';
 
   return (
-    <div className='container searchPage'>
+    <div className='searchPage'>
       <SearchData 
         setQuery={setQuery} 
         setCurrentPage={setPage}

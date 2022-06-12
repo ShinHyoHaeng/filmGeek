@@ -93,7 +93,7 @@ header.MuiPaper-root{
         }
     }
     .menu{
-        width: 9rem;
+        // width: 9rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -121,9 +121,7 @@ header.MuiPaper-root{
 }
 
 .container{
-    width: 75%;
-    margin: 64px auto 0 auto;
-    padding: 2rem 5rem;
+    width: 100%;
     .compArea{
         padding: 1rem 0;
     }
@@ -276,7 +274,6 @@ footer.MuiBox-root{
     .showMobile{
         display: flex !important;
     }
-
     .itemList{
         .MuiSkeleton-root{
             height:200px;
@@ -318,7 +315,6 @@ footer.MuiBox-root{
             }
         }
     }
-
     .itemList{
         .MuiSkeleton-root{
             height:160px;

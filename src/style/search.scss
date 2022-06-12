@@ -1,5 +1,8 @@
 @import './mixin';
 .searchPage{
+    width: 75%;
+    margin: 64px auto 0 auto;
+    padding: 2rem 5rem;
     .MuiGrid-item{
         max-width: 20%;
         flex-basis: 20%;
@@ -87,10 +90,8 @@
 
 @include laptop{
     .searchPage{
-        &.container{
-            width: 90%;
-            //padding: 2rem;
-        }
+        width: 90%;
+        padding: 2rem;
         .resultList{
             .MuiSkeleton-root{
                 height:270px;
@@ -108,10 +109,7 @@
 
 @include laptopToTablet {
     .searchPage{
-        &.container{
-            width: 100%;
-            //padding: 2rem;
-        }
+        width: 90%;
         .resultList{
             .MuiSkeleton-root{
                 height:250px;
@@ -129,10 +127,8 @@
 
 @include tablet{
     .searchPage{
-        &.container{
-            width: 100%;
-            padding: 2rem;
-        }
+        width: 100%;
+        padding: 2rem;
         .resultList{
             .MuiGrid-item{
                 max-width: 25%;
@@ -151,9 +147,8 @@
 
 @include tabletToMobile {
     .searchPage{
-        &.container{
-            width: 100%;
-        }
+        width: 100%;
+        padding: 2rem;
         .resultList{
             .MuiSkeleton-root{
                 height:200px;
@@ -178,12 +173,10 @@
 
 @include mobile {
     .searchPage{
-        padding: 1rem 2rem;
-        &.container{
-            width: 100%;
-            .compArea{
-                padding: 0.5rem 0;
-            }
+        width: 100%;
+        padding: 2rem;
+        .compArea{
+            padding: 0.5rem 0;
         }
         .resultList{
             .MuiSkeleton-root{

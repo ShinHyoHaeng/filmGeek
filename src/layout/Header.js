@@ -17,10 +17,13 @@ export default function Header(props) {
   function handleClick() {
     const destination = location.search;
     console.log(destination)
-    return navigate({
-      pathname: '/home',
-      search: destination
-    });
+    return navigate(
+      -1
+      // {
+      //   pathname: '/home',
+      //   search: destination
+      // }
+    );
   }
 
   function ScrollTop(props) {
@@ -72,7 +75,8 @@ export default function Header(props) {
     className: trigger? "scrollHeader":"",
     elevation: trigger ? 4 : 0,
     style: {
-      backgroundColor: trigger ? "#fff" : location.pathname.includes('/detail')? "transparent":"#3700b3",
+      //backgroundColor: trigger ? "#fff" : location.pathname.includes('/detail')? "transparent":"#3700b3",
+      backgroundColor: trigger ? "#fff" : "transparent",
       transition: trigger ? "0.3s" : "0.3s",
     }
   });
@@ -101,7 +105,7 @@ export default function Header(props) {
             }
             {!location.pathname.includes('/detail') && 
               <Link to={`/`}>
-                <h1>tmdb2notion</h1>
+                <h1>filmGeek</h1>
               </Link>
             }
               <div className='menu'>
@@ -115,11 +119,11 @@ export default function Header(props) {
                   <ToggleButton value="ko-KR" aria-label="Korean">KR</ToggleButton>
                   <ToggleButton value="en-US" aria-label="English">EN</ToggleButton>
                 </ToggleButtonGroup>
-                <IconButton size="large" aria-label="you choose 4 contents for notion" color="inherit" onClick={() => alert("준비중입니다")}>
+                {/* <IconButton size="large" aria-label="you choose 4 contents for notion" color="inherit" onClick={() => alert("준비중입니다")}>
                   <Badge badgeContent={4} color="error">
                     <NotionIcon />
                   </Badge>
-                </IconButton>
+                </IconButton> */}
               </div>
           </Toolbar>
         </AppBar>

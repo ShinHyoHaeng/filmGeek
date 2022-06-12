@@ -54,7 +54,7 @@ export default function Detail({language, query, page}) {
   const id = params.id;
   
   return (
-    <div className='container detailPage'>
+    <div className='detailPage'>
       <Fetch 
         uri={`${API_URL}${mediaType}/${id}?api_key=${API_KEY}&language=${language}`} 
         renderSuccess={featured}
