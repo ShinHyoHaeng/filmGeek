@@ -6,7 +6,6 @@ body{
     font-weight: 400;
     .wrapper{
         display: flex;
-        flex-direction: column;
         min-height: 100vh;
         .MuiSkeleton-root{
             width: 100%;
@@ -26,7 +25,8 @@ body{
 
 header.MuiPaper-root{
     background: #3700b3;
-    color: #fff;
+    //color: #fff;
+    z-index: 9999;
     &.scrollHeader{
         a{
             color:rgba(0,0,0,0.75);
@@ -67,10 +67,12 @@ header.MuiPaper-root{
         align-items: center;
     }
     a{
-        color: #fff;
+        //color: #fff;
+        color:rgba(0,0,0,0.75);
         text-decoration: none;
         h1{
             font-size: 1.25rem;
+            margin: 0;
         }
     }
     button{
@@ -118,6 +120,7 @@ header.MuiPaper-root{
 #back-to-top-anchor{
     height: 0;
     min-height: 0;
+    padding: 0;
 }
 
 .container{
