@@ -124,8 +124,8 @@ export default function Header(props) {
     className: trigger? "scrollHeader":"",
     elevation: trigger ? 4 : 0,
     style: {
-      //backgroundColor: trigger ? "#fff" : location.pathname.includes('/detail')? "transparent":"#3700b3",
-      backgroundColor: trigger ? "#fff" : "transparent",
+      backgroundColor: trigger ? "#fff" : location.pathname.includes('/detail')? "transparent":"#fff",
+      //backgroundColor: trigger ? "#fff" : "transparent",
       transition: trigger ? "0.3s" : "0.3s",
     }
   });

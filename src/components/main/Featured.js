@@ -21,7 +21,7 @@ export default function Featured({data, language, mediaType}) {
                 {data.title !== data.original_title &&
                     <p className="subTitle">{data.original_title}</p>
                 }
-                <p>{data.overview}</p>
+                {/* <p>{data.overview}</p> */}
                 <div className="buttonArea">
                     <Button variant="contained" size="large" color="error" startIcon={<PlayArrowIcon />} onClick={playYoutube}>재생</Button>
                     <Button variant="outlined" size="large" startIcon={<InfoIcon />} component={Link} to={`/detail/${mediaType}/${data.id}?language=${language}`}>상세 정보</Button>

@@ -1,10 +1,16 @@
 @import './mixin';
 
 .mainPage{
-    //margin: 64px auto 0 auto;
+    margin: 48px auto 0 auto;
+    padding: 0 2rem;
+    .mediaTypeTab{
+        padding: 1.5rem 0;
+    }
     .featuredArea{
         width: 100%;
-        height: 75vh;
+        height: 500px;
+        border-radius: 6px;
+        overflow: hidden;
         position: relative;
         display:flex;
         align-items: center;
@@ -58,8 +64,8 @@
     }
 
     .popularArea{
-        width: 75%;
-        margin: 0 auto;
-        padding: 2rem;
+        // width: 75%;
+        // margin: 0 auto;
+        // padding: 2rem;
     }
 }
